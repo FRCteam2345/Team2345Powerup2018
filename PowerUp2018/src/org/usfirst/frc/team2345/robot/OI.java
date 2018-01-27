@@ -10,7 +10,7 @@ public class OI {
 	public static Joystick stick = new Joystick(0);
 	public static Joystick schtick = new Joystick(1);
 	public static Joystick XboxC = new Joystick(2);
-	// Test 23
+	// From another machine
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
