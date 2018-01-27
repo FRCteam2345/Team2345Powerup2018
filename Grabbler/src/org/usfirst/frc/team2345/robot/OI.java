@@ -19,7 +19,7 @@ public class OI {
 	public static JoystickButton In = new JoystickButton(Stick, 2); 
 	public static JoystickButton Out = new JoystickButton(Stick, 3); 
 	
-	// More text
+	// Less text
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
