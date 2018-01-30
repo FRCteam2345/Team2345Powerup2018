@@ -20,7 +20,8 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 	public static DigitalInput SwitchGrabber = new DigitalInput(6);
 	public static DigitalInput SwitchGrabberDeployed = new DigitalInput(7);
-	public static DigitalInput Switch3 = new DigitalInput(8);
+	public static DigitalInput switchLiftBottom = new DigitalInput(8);
+	public static DigitalInput switchLiftTop = new DigitalInput(9);
 	
 	
 	public static VictorSP Grabber1 = new VictorSP(0);
