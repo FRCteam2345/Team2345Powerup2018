@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
+/*
  */
 public class Liftsystem extends Subsystem {
 	public static WPI_TalonSRX lifterMotor1 = RobotMap.lifterMotor1;
@@ -45,6 +44,8 @@ public void SetLiftHeight(double height) {
 	}
 		
 }
+
+public 
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
