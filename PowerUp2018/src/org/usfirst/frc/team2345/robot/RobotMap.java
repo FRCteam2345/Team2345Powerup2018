@@ -18,9 +18,9 @@ public class RobotMap {
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
-	public static DigitalInput SwitchGrabber = new DigitalInput(4);
-	public static DigitalInput SwitchGrabberDeployed = new DigitalInput(5);
-	public static DigitalInput Switch3 = new DigitalInput(6);
+	public static DigitalInput SwitchGrabber = new DigitalInput(6);
+	public static DigitalInput SwitchGrabberDeployed = new DigitalInput(7);
+	public static DigitalInput Switch3 = new DigitalInput(8);
 	
 	
 	public static VictorSP Grabber1 = new VictorSP(0);
@@ -30,6 +30,7 @@ public class RobotMap {
 	
 	public static Encoder RightSideEncoder = new Encoder(2,3);
 	public static Encoder LeftSideEncoder = new Encoder(0,1);
+	public static Encoder liftEncoder = new Encoder(4,5);
 	
 	public static WPI_TalonSRX lifterMotor1 = new WPI_TalonSRX(4);
 	public static WPI_TalonSRX lifterMotor2 = new WPI_TalonSRX(5);
