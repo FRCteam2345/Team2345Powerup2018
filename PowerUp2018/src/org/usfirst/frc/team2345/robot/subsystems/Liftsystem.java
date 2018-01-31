@@ -45,7 +45,6 @@ public void SetLiftHeight(double height) {
 		
 }
 
-public 
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
