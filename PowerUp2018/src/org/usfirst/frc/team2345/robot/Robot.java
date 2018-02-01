@@ -16,6 +16,7 @@ import java.util.Random;
 
 import org.usfirst.frc.team2345.robot.commands.Autonomous;
 
+import org.usfirst.frc.team2345.robot.subsystems.Grabber;
 import org.usfirst.frc.team2345.robot.subsystems.Drivesystem;
 import org.usfirst.frc.team2345.robot.subsystems.Liftsystem;
 
@@ -28,6 +29,7 @@ import org.usfirst.frc.team2345.robot.subsystems.Liftsystem;
  */
 public class Robot extends IterativeRobot {
 	public static OI oi;
+	public static Grabber Grabber;
 	public static Drivesystem Drivesystem;
 	public static Liftsystem Liftsystem;
 
@@ -43,6 +45,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		oi = new OI();
+		Grabber = new Grabber();
 		Drivesystem = new Drivesystem();
 		Liftsystem = new Liftsystem();
 		autonomousCommand = new Autonomous();
@@ -139,6 +142,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		
 	}
 }

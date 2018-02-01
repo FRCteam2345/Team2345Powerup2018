@@ -22,10 +22,11 @@ public class RobotMap {
 	public static DigitalInput SwitchGrabberDeployed = new DigitalInput(7);
 	public static DigitalInput switchLiftBottom = new DigitalInput(8);
 	public static DigitalInput switchLiftTop = new DigitalInput(9);
-	
+	public static DigitalInput switchGrabberIn = new DigitalInput(10);
 	
 	public static VictorSP Grabber1 = new VictorSP(0);
 	public static VictorSP Grabber2 = new VictorSP(1);
+	public static VictorSP ViagraMotor = new VictorSP(2);
 	
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	
