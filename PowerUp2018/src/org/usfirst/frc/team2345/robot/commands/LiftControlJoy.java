@@ -2,25 +2,19 @@ package org.usfirst.frc.team2345.robot.commands;
 
 import org.usfirst.frc.team2345.robot.OI;
 import org.usfirst.frc.team2345.robot.Robot;
-import org.usfirst.frc.team2345.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TankDriveWithJoy extends Command {
+public class LiftControlJoy extends Command {
 	Joystick stick = OI.stick;
 	Joystick schtick = OI.schtick;
-    public TankDriveWithJoy() {
-    	requires(Robot.Drivesystem);
-    	
-    	
-    	
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public LiftControlJoy() {
+     requires(Robot.Liftsystem);
+     requires(Robot.Grabber);
     }
 
     // Called just before this Command runs the first time
@@ -29,9 +23,8 @@ public class TankDriveWithJoy extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	Robot.Drivesystem.RobotDriveJoy(stick, schtick);
-    	
+    	Robot.Liftsystem.JoystickLiftControl(stick);
+    	Robot.Grabber.JoystickGrabberControl(stick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

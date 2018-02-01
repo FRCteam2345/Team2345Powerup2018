@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2345.robot.subsystems;
 
 import org.usfirst.frc.team2345.robot.RobotMap;
+import org.usfirst.frc.team2345.robot.commands.LiftControlJoy;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -62,11 +64,23 @@ public void Releasing(){
 		Grabber1.set(0);
 		Grabber2.set(0);
 	}
+
+
 	
+}
+
+public void JoystickGrabberControl(Joystick stick) {
+	if(stick.getRawButton(4)==true) {
+		Releasing();
+	}
+	else if(stick.getRawButton(5)==true) {
+		Grabbing();
+	}
 }
 
 
     public void initDefaultCommand() {
+    	setDefaultCommand(new LiftControlJoy());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
