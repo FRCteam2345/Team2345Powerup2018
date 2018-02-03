@@ -22,6 +22,8 @@ public class Liftsystem extends Subsystem {
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean buttonBoolean = false;
 	public static Boolean logicBoolean = false;
+	public static Double heightdelta;
+	public static Double heightMath;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -33,6 +35,7 @@ public class Liftsystem extends Subsystem {
 	public void Coast() {
 		lifterMotor1.setNeutralMode(NeutralMode.Coast);
 		lifterMotor2.setNeutralMode(NeutralMode.Coast);
+		
 	}
 	
 	
@@ -40,19 +43,65 @@ public class Liftsystem extends Subsystem {
 public void SetLiftHeight(double height) {
 	double liftheight = liftEncoder.get();
 	
-	if(liftheight<height-.1){
+	
+	
+	
+	/*if(liftheight<height-30){
 		lifterMotor1.set(.3);
 		lifterMotor2.set(.3);
 		Coast();
 	}
-	else if(liftheight>height+.1) {
+	
+	else if(liftheight<height-20) {
+		lifterMotor1.set(.15);
+		lifterMotor2.set(.15);
+		Coast();
+	}
+	else if(liftheight<height-10) {
+		lifterMotor1.set(.075);
+		lifterMotor2.set(.075);
+		Coast();
+	}
+	
+	else if(liftheight>height+30) {
 		lifterMotor1.set(-.3);
 		lifterMotor2.set(-.3);
+		Coast();
 	}
+	
+	else if(liftheight<height+20) {
+		lifterMotor1.set(-.15);
+		lifterMotor2.set(-.15);
+		Coast();
+	}
+	else if(liftheight<height+10) {
+		lifterMotor1.set(-.075);
+		lifterMotor2.set(-.075);
+		Coast();
+	}
+	
 	else {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		Brake();
+	}*/
+	heightdelta = height-liftheight;
+	heightMath=heightdelta/50;
+	if(heightMath>1) {
+		heightMath=1.;
+	}
+	heightMath=heightMath*.3;
+	
+	lifterMotor1.set(heightMath);
+	lifterMotor2.set(heightMath);
+	
+	if(heightdelta<=5 && heightdelta>=-5) {
+		lifterMotor1.set(0);
+		lifterMotor2.set(0);
+		Brake();
+	}
+	else {
+		Coast();
 	}
 	
 	if(liftSwitchBottom.get()==false) {
@@ -67,11 +116,13 @@ public void SetLiftHeight(double height) {
 }
 
 public void JoystickLiftControl(Joystick stick) {
+	double liftheight = liftEncoder.get();
+	if(stick.getRawAxis(5)>.05 || stick.getRawAxis(5)<-.05) {
+		lifterMotor1.set(-stick.getRawAxis(5)*.5);
+		lifterMotor2.set(-stick.getRawAxis(5)*.5);
+		logicBoolean=false;
+	}
 	
-	
-	
-	lifterMotor1.set(stick.getRawAxis(5)*.5);
-	lifterMotor2.set(stick.getRawAxis(5)*.5);
 	
 	if(liftSwitchBottom.get()==false) {
 		lifterMotor1.set(0);
@@ -116,7 +167,7 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	
 	
-	
+	SmartDashboard.putNumber("LiftEncoder",(int) liftheight);
 }
 
 

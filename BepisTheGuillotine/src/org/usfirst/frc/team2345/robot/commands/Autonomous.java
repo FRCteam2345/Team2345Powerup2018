@@ -25,6 +25,7 @@ public class Autonomous extends Command {
 	public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
 	public static ADXRS450_Gyro Gyro = RobotMap.Gyro;*/
 	//public static String gameData= Robot.gameData;
+	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean first = Robot.Drivesystem.first;
 	public static int counter = Robot.Drivesystem.counter;
 	 
@@ -35,7 +36,7 @@ public class Autonomous extends Command {
     }
 
     protected void initialize() {
-    	
+    	liftEncoder.reset();
     	
     	ArrayList<String> possibleGameStates = new ArrayList<String>();
 		possibleGameStates.add("LLL");
@@ -63,7 +64,7 @@ public class Autonomous extends Command {
     	double FeetMoved = ((RightEncoder+LeftEncoder)/720)*1.57;*/
     	
 		
-		if(counter == 0){
+		/*if(counter == 0){
 		
 			Robot.Drivesystem.MoveForwardFeet(2);
 		}
@@ -72,7 +73,9 @@ public class Autonomous extends Command {
 		}
 		else if (counter == 2){
 			Robot.Drivesystem.MoveForwardFeet(2);	
-		}
+		}*/
+    	//145 ticks of the lift encoder is one rotation of the axle
+    	Robot.Liftsystem.SetLiftHeight(1450);
 			
 		
 		

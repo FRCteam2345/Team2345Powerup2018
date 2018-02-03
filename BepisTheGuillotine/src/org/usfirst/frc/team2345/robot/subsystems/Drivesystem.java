@@ -120,7 +120,12 @@ public class Drivesystem extends Subsystem {
 		double forwardBasic = XboxC.getRawAxis(3);
 		double backwardBasic= XboxC.getRawAxis(2);
 		double turnBasic = -XboxC.getRawAxis(0);
-			
+		
+		if(turnBasic<.05 && turnBasic>-.05) {
+			turnBasic=0;
+		}
+		
+		
 		double forward = forwardBasic ;
 		double backward = backwardBasic ;
 		double turn = turnBasic ;
