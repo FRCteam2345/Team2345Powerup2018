@@ -63,19 +63,22 @@ public class Autonomous extends Command {
 		double LeftEncoder = -LeftSideEncoder.get();
     	double FeetMoved = ((RightEncoder+LeftEncoder)/720)*1.57;*/
     	
-		//j
-		/*if(counter == 0){
+		
+		if(counter == 0){
 		
 			Robot.Drivesystem.MoveForwardFeet(2);
 		}
 		else if (counter == 1){
-			Robot.Drivesystem.RotateRobot(360);
+			Robot.Drivesystem.MoveForwardFeet(2);
+			Robot.Liftsystem.SetLiftHeight(1450);
 		}
 		else if (counter == 2){
-			Robot.Drivesystem.MoveForwardFeet(2);	
-		}*/
+			Robot.Drivesystem.MoveForwardFeet(2);
+			Robot.Liftsystem.SetLiftHeight(1450);
+		}
+		
     	//145 ticks of the lift encoder is one rotation of the axle
-    	Robot.Liftsystem.SetLiftHeight(1450);
+    	
 			
 		
 		

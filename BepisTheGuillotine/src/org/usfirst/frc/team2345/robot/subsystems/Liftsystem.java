@@ -95,6 +95,7 @@ public void SetLiftHeight(double height) {
 	lifterMotor1.set(heightMath);
 	lifterMotor2.set(heightMath);
 	
+	
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
@@ -103,6 +104,7 @@ public void SetLiftHeight(double height) {
 	else {
 		Coast();
 	}
+	
 	
 	if(liftSwitchBottom.get()==false) {
 		lifterMotor1.set(0);
