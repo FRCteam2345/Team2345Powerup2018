@@ -63,7 +63,7 @@ public class Autonomous extends Command {
 		double LeftEncoder = -LeftSideEncoder.get();
     	double FeetMoved = ((RightEncoder+LeftEncoder)/720)*1.57;*/
     	
-		
+		//j
 		/*if(counter == 0){
 		
 			Robot.Drivesystem.MoveForwardFeet(2);
