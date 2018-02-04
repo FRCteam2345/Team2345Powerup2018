@@ -63,7 +63,7 @@ public class Autonomous extends Command {
 		double LeftEncoder = -LeftSideEncoder.get();
     	double FeetMoved = ((RightEncoder+LeftEncoder)/720)*1.57;*/
     	
-		
+		//Way for setting up an autonomous command chain, cant use two drive train functions at the same time, but can use seperate systems together.
 		if(counter == 0){
 		
 			Robot.Drivesystem.MoveForwardFeet(2);

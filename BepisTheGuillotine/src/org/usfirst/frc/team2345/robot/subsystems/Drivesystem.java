@@ -33,6 +33,7 @@ public class Drivesystem extends Subsystem {
 	
 	public void MoveForwardFeet(double Feet)
 	{	
+		
 	double deviation = Gyro.getAngle()/360;
 	double RightEncoder = RightSideEncoder.get();
 	double LeftEncoder = -LeftSideEncoder.get();
@@ -173,14 +174,9 @@ public class Drivesystem extends Subsystem {
 	{
 		double Rightencoder = RightSideEncoder.get();
 		double LeftEncoder = -LeftSideEncoder.get();
-		double FeetMoved = ((Rightencoder)/360)*1.57;
-		
-    	SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
+		double FeetMoved = ((Rightencoder+LeftEncoder)/720)*1.57;
 		
     	
-		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
-		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
-		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		
 	
 		double forwardBasic = XboxC.getRawAxis(3);
@@ -200,7 +196,7 @@ public class Drivesystem extends Subsystem {
 		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57));
 		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57));
 		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57));*/
-		FrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+		
 		
 		FrontLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
 		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
@@ -213,6 +209,12 @@ public class Drivesystem extends Subsystem {
 		BackLeftMotor.set(forward-backward-turn);
 		FrontRightMotor.set(-forward+backward-turn);
 		BackRightMotor.set(-forward+backward-turn);*/
+
+		SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
+		
+		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
+		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
+		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		
 	}
 	
