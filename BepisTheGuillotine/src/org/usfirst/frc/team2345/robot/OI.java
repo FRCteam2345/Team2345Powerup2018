@@ -1,6 +1,10 @@
 package org.usfirst.frc.team2345.robot;
 
+import org.usfirst.frc.team2345.robot.commands.LiftBottom;
+import org.usfirst.frc.team2345.robot.commands.LiftTop;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,6 +12,16 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	public static Joystick XboxC = new Joystick(0);
+	
+	public OI() {
+		JoystickButton Y = new JoystickButton(XboxC,4);
+		JoystickButton A = new JoystickButton(XboxC, 1);
+		
+		Y.whenPressed(new LiftTop());
+		A.whenPressed(new LiftBottom());
+		
+		
+	}
 	// From another machine
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

@@ -44,26 +44,13 @@ public void Flaccidity(){
 
 
 public void Grabbing(){
-	if(SwitchGrabber.get()==false){
-		Grabber1.set(1);
-		Grabber2.set(-1);
-	}
-	else{
-		Grabber1.set(0);
-		Grabber2.set(0);
-	}
-	
+	Grabber1.set(.6);
+	Grabber2.set(.6);
 }
 
 public void Releasing(){
-	if(SwitchGrabber.get()==true){
 		Grabber1.set(-1);
-		Grabber2.set(1);
-	}
-	else{
-		Grabber1.set(0);
-		Grabber2.set(0);
-	}
+		Grabber2.set(-1);
 	
 }
 
@@ -74,6 +61,10 @@ public void JoystickGrabberControl(Joystick stick) {
 	}
 	else if(stick.getRawButton(5)==true) {
 		Grabbing();
+	}
+	else {
+		Grabber1.set(0);
+		Grabber2.set(0);
 	}
 }
 

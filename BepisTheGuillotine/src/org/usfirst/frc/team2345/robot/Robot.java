@@ -46,10 +46,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		
-		oi = new OI();
+		
 		Grabber = new Grabber();
 		Drivesystem = new Drivesystem();
 		Liftsystem = new Liftsystem();
+		oi = new OI();
+		
 		autonomousCommand = new Autonomous();
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();

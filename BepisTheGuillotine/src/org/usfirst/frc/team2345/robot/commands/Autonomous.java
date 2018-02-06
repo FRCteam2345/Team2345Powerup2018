@@ -28,6 +28,7 @@ public class Autonomous extends Command {
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean first = Robot.Drivesystem.first;
 	public static int counter = Robot.Drivesystem.counter;
+	public static String gameData;
 	 
 	public Autonomous() {
     	requires(Robot.Drivesystem);
@@ -79,177 +80,55 @@ public class Autonomous extends Command {
 		
     	//145 ticks of the lift encoder is one rotation of the axle
     	
-			
-		
-		
-		
-    	/*if(FeetMoved<5)
-		{
-			FrontLeftMotor.set(.30);
-			BackLeftMotor.set(.30);
-			FrontRightMotor.set(-.30);
-			BackRightMotor.set(-.30);
-		}
-	else
-		{
-			FrontLeftMotor.stopMotor();
-			BackLeftMotor.stopMotor();
-			FrontRightMotor.stopMotor();
-			BackRightMotor.stopMotor();
-			
-		}*/
-    	/*if(AngleRotated>360)
-    	{
-    		FrontLeftMotor.set(.30);
-			BackLeftMotor.set(.30);
-			FrontRightMotor.set(.30);
-			BackRightMotor.set(.30);
-    	}
-    	else
-    	{
-    		FrontLeftMotor.stopMotor();
-			BackLeftMotor.stopMotor();
-			FrontRightMotor.stopMotor();
-			BackRightMotor.stopMotor();
-    	}
-    	*/
-    	/*if(gameData=="RRR"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    	if(gameData=="RRR"){
+    	
     	}
     	
     	else if(gameData=="RRL"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    	
     	}
 
     	else if(gameData=="RLL"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    	
     	}
 
     	else if(gameData=="LLL"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    		
+    		if(counter == 0){
+		
+			Robot.Drivesystem.MoveForwardFeet(2);
+		}
+		else if (counter == 1){
+			Robot.Drivesystem.MoveForwardFeet(2);
+			Robot.Liftsystem.SetLiftHeight(1450);
+		}
+		else if (counter == 2){
+			Robot.Drivesystem.MoveForwardFeet(2);
+			Robot.Liftsystem.SetLiftHeight(1450);
+		}
+    		
+    		
+		
     	}
 
     	else if(gameData=="LLR"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    	
 
     	}
 
     	else if(gameData=="LRR"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
-
+    	
     	}
 
     	else if(gameData=="RLR"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
-    		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
+    		
     	}
 
     	else if(gameData=="LRL"){
-    		if(FeetMoved<5)
-    		{
-    			FrontLeftMotor.set(.30);
-    			BackLeftMotor.set(.30);
-    			FrontRightMotor.set(-.40);
-    			BackRightMotor.set(-.40);
+    		
+    		
     		}
-    	else
-    		{
-    			FrontLeftMotor.set(0);
-    			BackLeftMotor.set(0);
-    			FrontRightMotor.set(0);
-    			BackRightMotor.set(0);
-    		}
-    	}*/
+    	
     	
     	
     	

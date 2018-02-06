@@ -174,7 +174,7 @@ public class Drivesystem extends Subsystem {
 	{
 		double Rightencoder = RightSideEncoder.get();
 		double LeftEncoder = -LeftSideEncoder.get();
-		double FeetMoved = ((Rightencoder+LeftEncoder)/720)*1.57;
+		double FeetMoved = ((Rightencoder)/360)*1.57;
 		
     	
 		
