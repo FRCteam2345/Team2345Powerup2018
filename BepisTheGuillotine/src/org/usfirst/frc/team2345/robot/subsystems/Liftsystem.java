@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2345.robot.subsystems;
 
 import org.usfirst.frc.team2345.robot.RobotMap;
+import org.usfirst.frc.team2345.robot.commands.Autonomous;
 import org.usfirst.frc.team2345.robot.commands.LiftControlJoy;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -25,6 +26,7 @@ public class Liftsystem extends Subsystem {
 	public static Boolean logicBoolean = false;
 	public static Double heightdelta;
 	public static Double heightMath;
+	public static int counter = Autonomous.counter;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -60,6 +62,7 @@ public void SetLiftHeight(double height) {
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		counter += 1;
 		Brake();
 	}
 	else {
@@ -85,7 +88,7 @@ public void LiftTop() {
 		Coast();
 	}
 	else {
-		
+		counter += 1;
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		Brake();
@@ -100,7 +103,7 @@ public void LiftBottom() {
 		Coast();
 	}
 	else {
-		
+		counter += 1;
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		liftEncoder.reset();
@@ -136,7 +139,7 @@ public void JoystickLiftControl(Joystick stick) {
 		buttonBoolean=true;
 		
 	}
-	
+	//This right here is a complicated way to turn the B button of the controller into a toggle;
 	else if(buttonBoolean==true) {
 		
 		if(logicBoolean==false) {

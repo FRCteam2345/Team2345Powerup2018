@@ -17,6 +17,7 @@ public class Sensors extends Command {
 	Encoder Encoder = RobotMap.Encoder;
 	AnalogInput Ultrasonic2 = RobotMap.Ultrasonic2;
 	AnalogInput Ultrasonic = RobotMap.UltraSonic;
+	AnalogInput Potentiometer = RobotMap.Potentiometer;
 	ADXRS450_Gyro Gyro = RobotMap.Gyro;
 	DigitalInput Switch2 = RobotMap.Switch2;
 	DigitalInput Switch1 = RobotMap.Switch1;
@@ -49,7 +50,7 @@ public class Sensors extends Command {
     	SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
     	SmartDashboard.putNumber("Ultrasonic22",(double) Ultrasonic22value);
     	SmartDashboard.putNumber("Ultrasonic2",(double) Ultrasonic2value);
-    	
+    	SmartDashboard.putNumber("Potentiometer",(double) Potentiometer.getAverageVoltage()*10);
     }
 
     // Make this return true when this Command no longer needs to run execute()

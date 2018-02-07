@@ -105,6 +105,7 @@ public class Drivesystem extends Subsystem {
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
 		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
+		
 		/*if(deviation < -5 || deviation > 5){
 		FrontLeftMotor.set(FrontLeftMotor.get()+.1*deviation);
 		BackLeftMotor.set(BackLeftMotor.get()+.1*deviation);

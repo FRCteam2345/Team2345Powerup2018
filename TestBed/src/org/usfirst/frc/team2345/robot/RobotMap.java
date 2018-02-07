@@ -37,6 +37,7 @@ public class RobotMap {
 	
 	public static AnalogInput Ultrasonic2 = new AnalogInput(1);
 	public static AnalogInput UltraSonic = new AnalogInput(0);
+	public static AnalogInput Potentiometer = new AnalogInput(2);
 	
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	

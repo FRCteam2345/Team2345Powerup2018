@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -29,6 +30,10 @@ public class RobotMap {
 	public static VictorSP ViagraMotor = new VictorSP(2);
 	
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
+	
+	//Actuator Code
+	public static AnalogInput Actuatorometer = new AnalogInput(0);
+	public static VictorSP Actuator = new VictorSP(3);
 	
 	public static Encoder RightSideEncoder = new Encoder(2,3);
 	public static Encoder LeftSideEncoder = new Encoder(0,1);
