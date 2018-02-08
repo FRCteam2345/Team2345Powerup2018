@@ -46,8 +46,8 @@ public class Robot extends IterativeRobot {
 		m_oi = new OI();
 		Motors = new Motors();
 		Sensors = new Sensors();
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();
+		/*UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();*/
 	}
 
 	/**

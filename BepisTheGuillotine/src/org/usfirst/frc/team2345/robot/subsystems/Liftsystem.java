@@ -69,16 +69,7 @@ public void SetLiftHeight(double height) {
 		Coast();
 	}
 	
-	
-	if(liftSwitchBottom.get()==false) {
-		lifterMotor1.set(0);
-		lifterMotor2.set(0);
-	}
-	else if(liftSwitchTop.get()==false) {
-		lifterMotor1.set(0);
-		lifterMotor2.set(0);
-	}
-		
+
 }
 
 public void LiftTop() {
@@ -117,22 +108,21 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	
 	double liftheight = liftEncoder.get();
-	if(stick.getRawAxis(5)>.05 || stick.getRawAxis(5)<-.05) {
-		lifterMotor1.set(-stick.getRawAxis(5)*.5);
-		lifterMotor2.set(-stick.getRawAxis(5)*.5);
+	
+	if(stick.getRawAxis(5)>.1 || stick.getRawAxis(5)<-.1) {
+		lifterMotor1.set(-stick.getRawAxis(5)*.4);
+		lifterMotor2.set(-stick.getRawAxis(5)*.4);
 		logicBoolean=false;
+	}
+	else {
+		logicBoolean=true;
 	}
 	
 	
 	if(liftSwitchBottom.get()==false) {
-		lifterMotor1.set(0);
-		lifterMotor2.set(0);
 		liftEncoder.reset();
 	}
-	else if(liftSwitchTop.get()==false) {
-		lifterMotor1.set(0);
-		lifterMotor2.set(0);
-	}
+	
 	
 	//Brake toggle code for lift
 	if(stick.getRawButton(2)==false) {

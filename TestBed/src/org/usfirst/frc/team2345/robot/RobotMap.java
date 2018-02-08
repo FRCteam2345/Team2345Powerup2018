@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -31,13 +32,17 @@ public class RobotMap {
 	
 	public static WPI_TalonSRX TestCim = new WPI_TalonSRX(0);
 	
+	public static AnalogInput Actuatorometer = new AnalogInput(2);
+	public static VictorSP Actuator = new VictorSP(3);
+	public static Counter HallEffect = new Counter(5);
+	
 	public static VictorSP Grabber1 = new VictorSP(0);
 	public static VictorSP Grabber2 = new VictorSP(1);
 	public static Relay TestPG = new Relay(0);
 	
 	public static AnalogInput Ultrasonic2 = new AnalogInput(1);
 	public static AnalogInput UltraSonic = new AnalogInput(0);
-	public static AnalogInput Potentiometer = new AnalogInput(2);
+	
 	
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	

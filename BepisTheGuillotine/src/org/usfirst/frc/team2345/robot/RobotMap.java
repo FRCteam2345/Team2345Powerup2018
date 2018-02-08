@@ -32,7 +32,8 @@ public class RobotMap {
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	
 	//Actuator Code
-	public static AnalogInput Actuatorometer = new AnalogInput(0);
+	
+	public static AnalogInput Actuatorometer = new AnalogInput(2);
 	public static VictorSP Actuator = new VictorSP(3);
 	
 	public static Encoder RightSideEncoder = new Encoder(2,3);

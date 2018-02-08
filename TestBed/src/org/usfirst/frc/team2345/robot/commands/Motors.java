@@ -1,9 +1,11 @@
 package org.usfirst.frc.team2345.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team2345.robot.OI;
@@ -20,17 +22,44 @@ public class Motors extends Command {
 	Joystick Joy = OI.Joy;
 	WPI_TalonSRX TestCim = RobotMap.TestCim;
 	Relay TestPG = RobotMap.TestPG;
+	
+
+	public static VictorSP Actuator = RobotMap.Actuator;
+	public static AnalogInput Actuatorometer = RobotMap.Actuatorometer;
+	
+
+	public static double PotentiometerVoltage;
     public Motors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
+    public void ActuatorGrabbing() {
+    	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
+    	Actuator.set(.5);
+    	
+    	if(PotentiometerVoltage>4) {
+    		Actuator.set(0);
+    	}
+    	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
+    }
 
+    public void ActuatorPushing() {
+    	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
+    	Actuator.set(-.5);
+    	
+    	if( PotentiometerVoltage<.1) {
+    		Actuator.set(0);
+    	}
+    	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
+    }
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	if(Joy.getRawButton(2)==true)
     	{
     		Grabber1.set(.5);
@@ -41,8 +70,18 @@ public class Motors extends Command {
     		Grabber1.set(1);
     		Grabber2.set(1);
     	}
+    	else if(Joy.getRawButton(3)==true) {
+    		//angleGrabbing();
+    		ActuatorPushing();
+    	}
+    	else if(Joy.getRawButton(4)==true) {
+    		ActuatorGrabbing();
+    	}
     	else
     	{
+    		Actuator.set(0);
+    		Grabber1.set(0);
+    		Grabber2.set(0);
     		Grabber1.set(0);
     		Grabber2.set(0);
     	}

@@ -91,13 +91,13 @@ public void JoystickGrabberControl(Joystick stick) {
 	else if(stick.getRawButton(5)==true) {
 		Grabbing();
 	}
-	else if(stick.getRawButton(3)==true) {
+	/*else if(stick.getRawButton(3)==true) {
 		//angleGrabbing();
 		ActuatorPushing();
 	}
 	else if(stick.getRawButton(4)==true) {
 		ActuatorGrabbing();
-	}
+	}*/
 	else {
 		Actuator.set(0);
 		Grabber1.set(0);

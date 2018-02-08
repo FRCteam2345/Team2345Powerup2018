@@ -3,6 +3,7 @@ package org.usfirst.frc.team2345.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
@@ -17,11 +18,11 @@ public class Sensors extends Command {
 	Encoder Encoder = RobotMap.Encoder;
 	AnalogInput Ultrasonic2 = RobotMap.Ultrasonic2;
 	AnalogInput Ultrasonic = RobotMap.UltraSonic;
-	AnalogInput Potentiometer = RobotMap.Potentiometer;
 	ADXRS450_Gyro Gyro = RobotMap.Gyro;
 	DigitalInput Switch2 = RobotMap.Switch2;
 	DigitalInput Switch1 = RobotMap.Switch1;
 	DigitalInput Switch3 = RobotMap.Switch3;
+	Counter HallEffect = RobotMap.HallEffect;
 	double Ultrasonic2value;
 	double Ultrasonic22value;
 	double UltrasonicValue;
@@ -42,6 +43,7 @@ public class Sensors extends Command {
     	UltrasonicValue = UltrasonicValue*25;
     	UltrasonicValue = UltrasonicValue-1.6;
     	
+    	SmartDashboard.putNumber("HalleffectSnesor",(double) HallEffect.get());
     	SmartDashboard.putBoolean("Switch",(boolean) Switch1.get());
     	SmartDashboard.putBoolean("Switch2",(boolean) Switch2.get());
     	SmartDashboard.putBoolean("Switch3",(boolean) Switch3.get());
@@ -50,7 +52,6 @@ public class Sensors extends Command {
     	SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
     	SmartDashboard.putNumber("Ultrasonic22",(double) Ultrasonic22value);
     	SmartDashboard.putNumber("Ultrasonic2",(double) Ultrasonic2value);
-    	SmartDashboard.putNumber("Potentiometer",(double) Potentiometer.getAverageVoltage()*10);
     }
 
     // Make this return true when this Command no longer needs to run execute()
