@@ -110,8 +110,10 @@ public void JoystickLiftControl(Joystick stick) {
 	double liftheight = liftEncoder.get();
 	
 	if(stick.getRawAxis(5)>.1 || stick.getRawAxis(5)<-.1) {
-		lifterMotor1.set(-stick.getRawAxis(5)*.4);
-		lifterMotor2.set(-stick.getRawAxis(5)*.4);
+		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
+		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
+		lifterMotor1.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		lifterMotor2.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
 		logicBoolean=false;
 	}
 	else {

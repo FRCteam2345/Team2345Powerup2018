@@ -34,23 +34,18 @@ public class Motors extends Command {
         // eg. requires(chassis);
     }
     public void ActuatorGrabbing() {
-    	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
-    	Actuator.set(.5);
     	
-    	if(PotentiometerVoltage>4) {
-    		Actuator.set(0);
-    	}
-    	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
+    	Actuator.set(.3);
+    	
+    	//SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
     }
 
     public void ActuatorPushing() {
-    	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
-    	Actuator.set(-.5);
     	
-    	if( PotentiometerVoltage<.1) {
-    		Actuator.set(0);
-    	}
-    	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
+    	Actuator.set(-.3);
+    	
+    	
+    	//SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
     }
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -65,7 +60,7 @@ public class Motors extends Command {
     		Grabber1.set(.5);
     		Grabber2.set(-.5);
     	}
-    	else if(Joy.getRawButton(3)==true)
+    	else if(Joy.getRawButton(5)==true)
     	{
     		Grabber1.set(1);
     		Grabber2.set(1);

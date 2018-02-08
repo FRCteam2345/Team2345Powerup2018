@@ -48,26 +48,6 @@ public void Flaccidity(){
 }
 
 
-public void ActuatorGrabbing() {
-	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
-	Actuator.set(.5);
-	
-	if(PotentiometerVoltage>4) {
-		Actuator.set(0);
-	}
-	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
-}
-
-public void ActuatorPushing() {
-	PotentiometerVoltage=Actuatorometer.getAverageVoltage()*10;
-	Actuator.set(-.5);
-	
-	if( PotentiometerVoltage<.1) {
-		Actuator.set(0);
-	}
-	SmartDashboard.putNumber("Potentiometer",(double) PotentiometerVoltage);
-}
-
 public void Grabbing(){
 	Grabber1.set(.3);
 	Grabber2.set(-.6);
@@ -91,18 +71,18 @@ public void JoystickGrabberControl(Joystick stick) {
 	else if(stick.getRawButton(5)==true) {
 		Grabbing();
 	}
-	/*else if(stick.getRawButton(3)==true) {
-		//angleGrabbing();
-		ActuatorPushing();
+	else if(stick.getRawButton(3)==true) {
+		angleGrabbing();
+		//ActuatorPushing();
 	}
-	else if(stick.getRawButton(4)==true) {
+	/*else if(stick.getRawButton(4)==true) {
 		ActuatorGrabbing();
 	}*/
 	else {
 		Actuator.set(0);
 		Grabber1.set(0);
 		Grabber2.set(0);
-		SmartDashboard.putNumber("Potentiometer666",(double) Actuatorometer.getVoltage());
+		
 	}
 }
 
