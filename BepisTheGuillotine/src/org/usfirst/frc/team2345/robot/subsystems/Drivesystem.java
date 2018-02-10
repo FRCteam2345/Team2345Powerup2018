@@ -5,6 +5,7 @@ import org.usfirst.frc.team2345.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team2345.robot.RobotMap;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -22,7 +23,7 @@ public class Drivesystem extends Subsystem {
 	public static WPI_TalonSRX FrontRightMotor = RobotMap.Frontrightmotor;
 	public static WPI_TalonSRX BackRightMotor = RobotMap.Backrightmotor;
 	public static Encoder RightSideEncoder = RobotMap.RightSideEncoder;
-	public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
+	//public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
 	public static double distancemath;
 	public static double distancedelta;
 	public static double angleDelta;
@@ -30,13 +31,14 @@ public class Drivesystem extends Subsystem {
 	public static ADXRS450_Gyro Gyro = RobotMap.Gyro;
 	public static Boolean first = false;
 	public static int counter = 0;
+	public static DigitalInput frontSwitch = RobotMap.frontSwitch;
 	
 	public void MoveForwardFeet(double Feet)
 	{	
 		
 	double deviation = Gyro.getAngle()/360;
 	double RightEncoder = RightSideEncoder.get();
-	double LeftEncoder = -LeftSideEncoder.get();
+	//double LeftEncoder = -LeftSideEncoder.get();
 	double FeetMoved = ((RightEncoder)/360)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
@@ -62,7 +64,7 @@ public class Drivesystem extends Subsystem {
 		
 		counter += 1;
 		RightSideEncoder.reset();
-    	LeftSideEncoder.reset();
+    	//LeftSideEncoder.reset();
 	}
 	
 	
@@ -104,7 +106,7 @@ public class Drivesystem extends Subsystem {
     	
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
-		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
+		//SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		
 		/*if(deviation < -5 || deviation > 5){
 		FrontLeftMotor.set(FrontLeftMotor.get()+.1*deviation);
@@ -118,7 +120,28 @@ public class Drivesystem extends Subsystem {
 		
 	}
 	
-	public void RotateRobot(double Angle)
+	public  void fowardTillSwitch() 
+	{
+		if(frontSwitch.get() == true) /*not pressed*/ 
+		{
+			BackLeftMotor.set(.4);
+			FrontLeftMotor.set(.4);
+			BackRightMotor.set(.4);
+			FrontRightMotor.set(.4);
+		}
+		
+		else 
+		{
+			BackLeftMotor.set(0);
+			FrontLeftMotor.set(0);
+			BackRightMotor.set(0);
+			FrontRightMotor.set(0);
+			counter+=1;
+			
+		}
+	}
+	
+	public void (double Angle)
 	{
 		double AngleRotated = Gyro.getAngle();
 		
@@ -146,7 +169,7 @@ public class Drivesystem extends Subsystem {
 			counter += 1;
 			Gyro.reset();
 			RightSideEncoder.reset();
-	    	LeftSideEncoder.reset();
+	    	//LeftSideEncoder.reset();
 		}
 		
 	/*	if(AngleRotated>Angle)
@@ -174,7 +197,7 @@ public class Drivesystem extends Subsystem {
 	public void RobotDriveJoy(Joystick XboxC)
 	{
 		double Rightencoder = RightSideEncoder.get();
-		double LeftEncoder = -LeftSideEncoder.get();
+		//double LeftEncoder = -LeftSideEncoder.get();
 		double FeetMoved = ((Rightencoder)/360)*1.57;
 		
     	
@@ -215,7 +238,7 @@ public class Drivesystem extends Subsystem {
 		
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
-		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
+		//SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		
 	}
 	

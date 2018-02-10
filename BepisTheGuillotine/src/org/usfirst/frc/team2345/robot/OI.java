@@ -5,6 +5,7 @@ import org.usfirst.frc.team2345.robot.commands.LiftTop;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,7 +20,7 @@ public class OI {
 		
 		Y.whenPressed(new LiftTop());
 		A.whenPressed(new LiftBottom());
-		
+		//SmartDashboard.putBoolean("LiftBottom", false);
 		
 	}
 	// From another machine

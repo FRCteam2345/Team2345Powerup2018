@@ -4,6 +4,7 @@ import org.usfirst.frc.team2345.robot.RobotMap;
 import org.usfirst.frc.team2345.robot.commands.LiftControlJoy;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -19,7 +20,9 @@ public class Grabber extends Subsystem {
 	public static VictorSP ViagraMotor = RobotMap.ViagraMotor;
 	
 	public static VictorSP Actuator = RobotMap.Actuator;
-	public static AnalogInput Actuatorometer = RobotMap.Actuatorometer;
+	public static DigitalInput HallEffect1 = RobotMap.HallEffect1;
+	public static DigitalInput HallEffect2 = RobotMap.HallEffect2;
+	public static Counter HallEffectC = RobotMap.HallEffectC;
 	
 	public static DigitalInput SwitchGrabber = RobotMap.SwitchGrabber;
 	public static DigitalInput SwitchGrabberDeployed = RobotMap.SwitchGrabberDeployed;
@@ -64,6 +67,23 @@ public void Releasing(){
 		Grabber2.set(1);
 }
 
+public void ActuatorOut() {
+	// Actuator will Extend
+	Actuator.set(.3);
+	
+	
+}
+
+public void ActuatorIn() {
+	// Actuator will retract
+	Actuator.set(-.3);
+	 if(HallEffect1.get()==false) {
+		 Actuator.set(0);
+	 }
+	
+	
+}
+
 public void JoystickGrabberControl(Joystick stick) {
 	if(stick.getRawButton(6)==true) {
 		Releasing();
@@ -75,15 +95,22 @@ public void JoystickGrabberControl(Joystick stick) {
 		angleGrabbing();
 		//ActuatorPushing();
 	}
-	/*else if(stick.getRawButton(4)==true) {
-		ActuatorGrabbing();
+	/*else if(stick.getRawButton(1)==true) {
+		//angleGrabbing();
+		ActuatorIn();
+	}
+	else if(stick.getRawButton(4)==true) {
+		ActuatorOut();
 	}*/
+	
 	else {
 		Actuator.set(0);
 		Grabber1.set(0);
 		Grabber2.set(0);
 		
 	}
+	SmartDashboard.putBoolean("Halleffect1",(boolean) HallEffect1.get());
+	SmartDashboard.putBoolean("Halleffect2",(boolean) HallEffect2.get());
 }
 
 

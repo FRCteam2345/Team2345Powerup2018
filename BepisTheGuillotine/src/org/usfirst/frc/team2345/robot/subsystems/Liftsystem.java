@@ -88,6 +88,7 @@ public void LiftTop() {
 }
 
 public void LiftBottom() {
+	//SmartDashboard.putBoolean("LiftBottom", true);
 	if(liftSwitchBottom.get()==true) {
 		lifterMotor1.set(-.5);
 		lifterMotor2.set(-.5);
@@ -144,6 +145,17 @@ public void JoystickLiftControl(Joystick stick) {
 		}	
 		
 		buttonBoolean=false;
+	}
+	
+	if(liftSwitchBottom.get()==false && stick.getRawAxis(5)<0) {
+		lifterMotor1.set(0);
+		lifterMotor2.set(0);
+		Brake();
+	}
+	else if(liftSwitchTop.get()==false && stick.getRawAxis(5)>0) {
+		lifterMotor1.set(0);
+		lifterMotor2.set(0);
+		Brake();
 	}
 	
 	
