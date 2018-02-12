@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2345.robot.subsystems;
 
 import org.usfirst.frc.team2345.robot.RobotMap;
+import org.usfirst.frc.team2345.robot.commands.Autonomous;
 import org.usfirst.frc.team2345.robot.commands.LiftControlJoy;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -22,12 +23,13 @@ public class Grabber extends Subsystem {
 	public static VictorSP Actuator = RobotMap.Actuator;
 	public static DigitalInput HallEffect1 = RobotMap.HallEffect1;
 	public static DigitalInput HallEffect2 = RobotMap.HallEffect2;
-	public static Counter HallEffectC = RobotMap.HallEffectC;
+	//public static Counter HallEffectC = RobotMap.HallEffectC;
 	
 	public static DigitalInput SwitchGrabber = RobotMap.SwitchGrabber;
 	public static DigitalInput SwitchGrabberDeployed = RobotMap.SwitchGrabberDeployed;
 	public static DigitalInput SwitchGrabberIn = RobotMap.switchGrabberIn;
 	public static double PotentiometerVoltage;
+	public static Boolean gameSetup = Autonomous.gameSetup;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -36,7 +38,7 @@ public void Viagra(){
 		ViagraMotor.set(.2);
 	}
 	else{
-		
+		gameSetup = true;
 		ViagraMotor.set(0);
 	}
 }

@@ -20,11 +20,11 @@ public class RobotMap {
 	public static DigitalInput frontSwitch = new DigitalInput(11);
 	public static DigitalInput HallEffect1 = new DigitalInput(12);// Retracting 
 	public static DigitalInput HallEffect2 = new DigitalInput(1);// Extracting
-	public static Counter HallEffectC = new Counter(0);
+	
 	
 	public static VictorSP Grabber1 = new VictorSP(0);
 	public static VictorSP Grabber2 = new VictorSP(1);
-	public static VictorSP ViagraMotor = new VictorSP(2);
+	public static VictorSP ViagraMotor = new VictorSP(2);//Motor for raising and lowering the grabber
 	
 	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	
@@ -37,12 +37,13 @@ public class RobotMap {
 	//public static Encoder LeftSideEncoder = new Encoder(0,1); Currently does not work
 	public static Encoder liftEncoder = new Encoder(4,5);
 	
-	public static WPI_TalonSRX lifterMotor1 = new WPI_TalonSRX(5);
-	public static WPI_TalonSRX lifterMotor2 = new WPI_TalonSRX(6);
+	public static WPI_TalonSRX lifterMotor1 = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX lifterMotor2 = new WPI_TalonSRX(5);
 	
+	public static WPI_TalonSRX ClimbingMotor = new WPI_TalonSRX(1);
 	
-	public static WPI_TalonSRX Frontleftmotor = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX Backleftmotor = new WPI_TalonSRX(1);
+	public static WPI_TalonSRX Frontleftmotor = new WPI_TalonSRX(6);
+	public static WPI_TalonSRX Backleftmotor = new WPI_TalonSRX(3);
 	public static WPI_TalonSRX Frontrightmotor = new WPI_TalonSRX(2);
 	public static WPI_TalonSRX Backrightmotor = new WPI_TalonSRX(4);
 	

@@ -15,11 +15,11 @@ public class OI {
 	public static Joystick XboxC = new Joystick(0);
 	
 	public OI() {
-		JoystickButton Y = new JoystickButton(XboxC,4);
-		JoystickButton A = new JoystickButton(XboxC, 1);
+	//	JoystickButton Y = new JoystickButton(XboxC,4);
+	//	JoystickButton A = new JoystickButton(XboxC, 1);
 		
-		Y.whenPressed(new LiftTop());
-		A.whenPressed(new LiftBottom());
+		//Y.whenPressed(new LiftTop());
+	//	A.whenPressed(new LiftBottom());
 		//SmartDashboard.putBoolean("LiftBottom", false);
 		
 	}

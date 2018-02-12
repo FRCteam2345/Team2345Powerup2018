@@ -141,7 +141,7 @@ public class Drivesystem extends Subsystem {
 		}
 	}
 	
-	public void (double Angle)
+	public void RotateRobot(double Angle)
 	{
 		double AngleRotated = Gyro.getAngle();
 		

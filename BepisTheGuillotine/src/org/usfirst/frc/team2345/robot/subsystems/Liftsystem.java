@@ -19,8 +19,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Liftsystem extends Subsystem {
 	public static WPI_TalonSRX lifterMotor1 = RobotMap.lifterMotor1;
 	public static WPI_TalonSRX lifterMotor2 = RobotMap.lifterMotor2;
+	public static WPI_TalonSRX ClimbingMotor = RobotMap.ClimbingMotor;
 	public static DigitalInput liftSwitchBottom = RobotMap.switchLiftBottom;
 	public static DigitalInput liftSwitchTop = RobotMap.switchLiftTop;
+	
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean buttonBoolean = false;
 	public static Boolean logicBoolean = false;
@@ -104,6 +106,14 @@ public void LiftBottom() {
 	
 }
 
+public void Climbing() {
+	ClimbingMotor.set(-1);
+}
+
+public void AntiClimbing() {
+	ClimbingMotor.set(-1);
+}
+
 public void JoystickLiftControl(Joystick stick) {
 	
 	
@@ -113,8 +123,8 @@ public void JoystickLiftControl(Joystick stick) {
 	if(stick.getRawAxis(5)>.1 || stick.getRawAxis(5)<-.1) {
 		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
-		lifterMotor1.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
-		lifterMotor2.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
 		logicBoolean=false;
 	}
 	else {
@@ -147,12 +157,22 @@ public void JoystickLiftControl(Joystick stick) {
 		buttonBoolean=false;
 	}
 	
-	if(liftSwitchBottom.get()==false && stick.getRawAxis(5)<0) {
+	if(stick.getRawButton(4)==true) {
+		Climbing();
+	}
+	/*else if(stick.getRawButton(1)==true) {
+		AntiClimbing();
+	}*/
+	else {
+		ClimbingMotor.set(0);
+	}
+	
+	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		Brake();
 	}
-	else if(liftSwitchTop.get()==false && stick.getRawAxis(5)>0) {
+	else if(liftSwitchTop.get()==false && -stick.getRawAxis(5)>0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		Brake();
