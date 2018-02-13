@@ -120,7 +120,7 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	double liftheight = liftEncoder.get();
 	
-	if(stick.getRawAxis(5)>.1 || stick.getRawAxis(5)<-.1) {
+	if(stick.getRawAxis(5)>.3 || stick.getRawAxis(5)<-.3) {
 		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
 		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
@@ -190,8 +190,8 @@ public void JoystickLiftControl(Joystick stick) {
 		Brake();
 	}
 	
-	
-	
+	SmartDashboard.putBoolean("BottomSwitch",(Boolean) liftSwitchBottom.get());
+	SmartDashboard.putNumber("LiftValue",(double) stick.getRawAxis(5) );
 	SmartDashboard.putNumber("LiftEncoder",(int) liftheight);
 }
 

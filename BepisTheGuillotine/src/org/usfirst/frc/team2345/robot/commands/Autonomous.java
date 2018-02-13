@@ -24,9 +24,11 @@ public class Autonomous extends Command {
 	public static int counter = Robot.Drivesystem.counter;
 	public static String gameData;
 	public static int fieldPosition;
-	public static Boolean gameSetup;
+	public static Boolean gameSetup = Robot.Grabber.gameSetup;
 	public Autonomous() {
     	requires(Robot.Drivesystem);
+    	requires(Robot.Grabber);
+    	requires(Robot.Liftsystem);
         // Use requires() here to declare subsystem dependencies
        
     }
@@ -58,12 +60,19 @@ public class Autonomous extends Command {
     		Robot.Grabber.Viagra();
     	}
     	
+    	
+    	if(counter==0) {
+			//Robot.Drivesystem.MoveForwardFeet(3);
+    		Robot.Drivesystem.RotateRobot(360);
+			counter=0;
+    	}
 		//Way for setting up an autonomous command chain, cant use two drive train functions at the same time, but can use seperate systems together.
 		
     	//145 ticks of the lift encoder is one rotation of the axle
+    	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false
     if(gameSetup==true) {	
     	
-    	if(gameData=="RRR"){
+    	if(gameData=="RRR" || gameData=="RRL"){
     		if(fieldPosition == 1) {
     			
     		} 
@@ -74,19 +83,8 @@ public class Autonomous extends Command {
     			
     		}
     	}
-    	else if(gameData=="RRL"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    	}
-
-    	else if(gameData=="RLL"){
+    	
+    	else if(gameData=="RLL" || gameData=="RLR"){
     		if(fieldPosition == 1) {
     			
     		} 
@@ -98,10 +96,10 @@ public class Autonomous extends Command {
     		}
     	}
 
-    	else if(gameData=="LLL"){
+    	else if(gameData=="LLL" || gameData=="LLR"){
     		
     		if(fieldPosition == 1) {
-    			if(counter==1) {
+    			/*if(counter==1) {
     				Robot.Drivesystem.MoveForwardFeet(24.5);
     			}
     			else if(counter==2) {
@@ -136,7 +134,7 @@ public class Autonomous extends Command {
     				
     					
     			}
-    			
+    			*/
     		} 
     		else if(fieldPosition == 2) {
     			
@@ -147,48 +145,8 @@ public class Autonomous extends Command {
 		
     	}
 
-    	else if(gameData=="LLR"){
-    		if(fieldPosition == 1) {
-    			
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			//start motor
-    			if(counter==1) {
-    				Robot.Drivesystem.MoveForwardFeet(3); //go forward 3 feet
-    			}
-    			else if(counter==2) {
-    				Robot.Drivesystem.RotateRobot(-90); //rotate 90* ccw
-    			}
-    			else if (counter==3) {
-    				Robot.Drivesystem.MoveForwardFeet(9); //forward 9 ft
-    			}
-    			else if(counter==4) {
-    				Robot.Drivesystem.RotateRobot(90); //rotate 90* cw
-    			}
-    			else if(counter==5) {
-    				Robot.Drivesystem.MoveForwardFeet(15);//forward 15ft
-    			}
-    			else if(counter==6) {
-    				Robot.Drivesystem.RotateRobot(90);//rotate 90* cw
-    			}
-    			else if(counter==7 || counter==8) {
-    				Robot.Drivesystem.fowardTillSwitch();
-    				Robot.Liftsystem.SetLiftHeight(6);
-    			}
-    			else if(counter==9) {
-    				Robot.Grabber.Releasing();
-    			}
-    		
     	
-    			}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-
-    	}
-
-    	else if(gameData=="LRR"){
+    	else if(gameData=="LRR" || gameData=="LRL"){
     		if(fieldPosition == 1) {
     			
     		} 
@@ -200,30 +158,7 @@ public class Autonomous extends Command {
     		}
     	}
 
-    	else if(gameData=="RLR"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    	}
-
-    	else if(gameData=="LRL"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    		
-    		}
+    	
     }
     	
     	

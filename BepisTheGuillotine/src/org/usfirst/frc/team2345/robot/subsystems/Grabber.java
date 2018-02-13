@@ -29,7 +29,7 @@ public class Grabber extends Subsystem {
 	public static DigitalInput SwitchGrabberDeployed = RobotMap.SwitchGrabberDeployed;
 	public static DigitalInput SwitchGrabberIn = RobotMap.switchGrabberIn;
 	public static double PotentiometerVoltage;
-	public static Boolean gameSetup = Autonomous.gameSetup;
+	public static Boolean gameSetup = false;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -54,19 +54,19 @@ public void Flaccidity(){
 
 
 public void Grabbing(){
-	Grabber1.set(.3);
-	Grabber2.set(-.6);
+	Grabber1.set(-.3);
+	Grabber2.set(.3);
 }
 
 public void angleGrabbing(){
-	Grabber1.set(.6);
-	Grabber2.set(.6);
+	Grabber1.set(-.6);
+	Grabber2.set(.3);
 }
 
 
 public void Releasing(){
-		Grabber1.set(-1);
-		Grabber2.set(1);
+		Grabber1.set(1);
+		Grabber2.set(-1);
 }
 
 public void ActuatorOut() {
@@ -97,11 +97,11 @@ public void JoystickGrabberControl(Joystick stick) {
 		angleGrabbing();
 		//ActuatorPushing();
 	}
-	/*else if(stick.getRawButton(1)==true) {
+	/*else if(stick.getRawButton(5)==true) {
 		//angleGrabbing();
 		ActuatorIn();
 	}
-	else if(stick.getRawButton(4)==true) {
+	else if(stick.getRawButton(3)==true) {
 		ActuatorOut();
 	}*/
 	

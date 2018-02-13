@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
 		autonomousCommand = new Autonomous();
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera3 = CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	/**
