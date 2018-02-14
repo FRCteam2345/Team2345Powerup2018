@@ -56,17 +56,18 @@ public class Autonomous extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	if(gameSetup==false) {
+    	/*if(gameSetup==false) {
     		Robot.Grabber.Viagra();
     	}
-    	
+    	*/
     	
     	if(counter==0) {
+    		Robot.Drivesystem.RotateRobot(130);//130=Rotation
 			//Robot.Drivesystem.MoveForwardFeet(3);
-    		Robot.Drivesystem.RotateRobot(360);
-			counter=0;
+    		//Robot.Drivesystem.RotateRobot(360);
+			
     	}
-		//Way for setting up an autonomous command chain, cant use two drive train functions at the same time, but can use seperate systems together.
+		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
 		
     	//145 ticks of the lift encoder is one rotation of the axle
     	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false

@@ -67,54 +67,20 @@ public class Drivesystem extends Subsystem {
     	//LeftSideEncoder.reset();
 	}
 	
-	
-	
-	/*	if(FeetMoved<Feet-.5)
-		{
-			FrontLeftMotor.set(.30);
-			BackLeftMotor.set(.30);
-			FrontRightMotor.set(-.30);
-			BackRightMotor.set(-.30);
-		
-		}
-		else if(FeetMoved<Feet-.25){
-			FrontLeftMotor.set(.15);
-			BackLeftMotor.set(.15);
-			FrontRightMotor.set(-.15);
-			BackRightMotor.set(-.15);
-		}
-		else if(FeetMoved<Feet){
-			FrontLeftMotor.set(.1);
-			BackLeftMotor.set(.1);
-			FrontRightMotor.set(-.1);
-			BackRightMotor.set(-.1);
-		}
-		else{
-			FrontLeftMotor.stopMotor();
-			BackLeftMotor.stopMotor();
-			FrontRightMotor.stopMotor();
-			BackRightMotor.stopMotor();
-			
-			counter += 1;
-			RightSideEncoder.reset();
-	    	LeftSideEncoder.reset();
-			
-		}*/
-	
 		SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
 		
     	
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
 		//SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
-		
-		/*if(deviation < -5 || deviation > 5){
+		/*
+		if(deviation < -.05 || deviation > .05){
 		FrontLeftMotor.set(FrontLeftMotor.get()+.1*deviation);
 		BackLeftMotor.set(BackLeftMotor.get()+.1*deviation);
 		FrontRightMotor.set(FrontRightMotor.get()+.1*deviation);
 		BackRightMotor.set(BackRightMotor.get()+.1*deviation);
-	}*/
-		
+	}
+		*/
 		
 		
 		
@@ -146,10 +112,13 @@ public class Drivesystem extends Subsystem {
 		double AngleRotated = Gyro.getAngle();
 		
 		angleDelta = Angle-AngleRotated;
-		angleMath=distancedelta/45;
+		angleMath=angleDelta/16.25;
 		
 		if(angleMath>1) {
 			angleMath=1.;
+		}
+		if(angleMath<-1) {
+			angleMath=-1.;
 		}
 		
 		angleMath=angleMath*.3;
@@ -159,7 +128,7 @@ public class Drivesystem extends Subsystem {
 		BackRightMotor.set(angleMath);
 		FrontRightMotor.set(angleMath);
 		
-		if(angleDelta<=4 && angleDelta>=-4) {
+		if(angleDelta<=5 && angleDelta>=-5) {
 
 			BackLeftMotor.set(0);
 			FrontLeftMotor.set(0);
@@ -172,26 +141,8 @@ public class Drivesystem extends Subsystem {
 	    	//LeftSideEncoder.reset();
 		}
 		
-	/*	if(AngleRotated>Angle)
-    	{
-    		FrontLeftMotor.set(.30);
-			BackLeftMotor.set(.30);
-			FrontRightMotor.set(.30);
-			BackRightMotor.set(.30);
-    	}
-    	else
-    	{
-    		FrontLeftMotor.stopMotor();
-			BackLeftMotor.stopMotor();
-			FrontRightMotor.stopMotor();
-			BackRightMotor.stopMotor();
-			
-			counter += 1;
-			RightSideEncoder.reset();
-	    	LeftSideEncoder.reset();
-			Gyro.reset();
-    	}
-    		*/
+		SmartDashboard.putNumber("Gyro", (double) Gyro.getAngle());
+    		
 	}
 
 	public void RobotDriveJoy(Joystick XboxC)
