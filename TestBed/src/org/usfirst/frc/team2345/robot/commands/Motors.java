@@ -25,7 +25,7 @@ public class Motors extends Command {
 	
 
 	public static VictorSP Actuator = RobotMap.Actuator;
-	public static AnalogInput Actuatorometer = RobotMap.Actuatorometer;
+	
 	
 
 	public static double PotentiometerVoltage;

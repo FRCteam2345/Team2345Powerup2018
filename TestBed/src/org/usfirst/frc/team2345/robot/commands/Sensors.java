@@ -22,10 +22,12 @@ public class Sensors extends Command {
 	DigitalInput Switch2 = RobotMap.Switch2;
 	DigitalInput Switch1 = RobotMap.Switch1;
 	DigitalInput Switch3 = RobotMap.Switch3;
-	Counter HallEffect = RobotMap.HallEffect;
+	DigitalInput HallEffect = RobotMap.HallEffect;
+	AnalogInput Diode = RobotMap.Diode;
 	double Ultrasonic2value;
 	double Ultrasonic22value;
 	double UltrasonicValue;
+	double Diodee;
     public Sensors() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -40,10 +42,12 @@ public class Sensors extends Command {
     	double Ultrasonic2value = Ultrasonic2.getVoltage()*1000;
     	double UltrasonicValue = Ultrasonic.getVoltage();
     	double Ultrasonic22value = (Ultrasonic2value/9.8);
+    	Diodee=Diode.getVoltage();
     	UltrasonicValue = UltrasonicValue*25;
     	UltrasonicValue = UltrasonicValue-1.6;
     	
-    	SmartDashboard.putNumber("HalleffectSnesor",(double) HallEffect.get());
+    	SmartDashboard.putNumber("PhotoDiode",(double) Diodee);
+    	SmartDashboard.putBoolean("HalleffectSnesor",(boolean) HallEffect.get());
     	SmartDashboard.putBoolean("Switch",(boolean) Switch1.get());
     	SmartDashboard.putBoolean("Switch2",(boolean) Switch2.get());
     	SmartDashboard.putBoolean("Switch3",(boolean) Switch3.get());

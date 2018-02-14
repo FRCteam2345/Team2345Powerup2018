@@ -67,6 +67,9 @@ public class Autonomous extends Command {
     		//Robot.Drivesystem.RotateRobot(360);
 			
     	}
+    	else if(counter==0) {
+    		Robot.Liftsystem.SetLiftHeight(820);
+    	}
 		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
 		
     	//145 ticks of the lift encoder is one rotation of the axle

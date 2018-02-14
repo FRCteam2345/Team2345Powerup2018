@@ -60,7 +60,7 @@ public void Grabbing(){
 
 public void angleGrabbing(){
 	Grabber1.set(-.6);
-	Grabber2.set(.3);
+	Grabber2.set(-.3);
 }
 
 
