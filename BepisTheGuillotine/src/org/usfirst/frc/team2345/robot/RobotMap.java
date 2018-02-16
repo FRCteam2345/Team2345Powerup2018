@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class RobotMap {
 
+	
+	
 	public static DigitalInput SwitchGrabber = new DigitalInput(6);
 	public static DigitalInput SwitchGrabberDeployed = new DigitalInput(7);
 	public static DigitalInput switchLiftBottom = new DigitalInput(8);
@@ -46,6 +48,8 @@ public class RobotMap {
 	public static WPI_TalonSRX Backleftmotor = new WPI_TalonSRX(3);
 	public static WPI_TalonSRX Frontrightmotor = new WPI_TalonSRX(2);
 	public static WPI_TalonSRX Backrightmotor = new WPI_TalonSRX(4);
+	
+	
 	
 	
 }

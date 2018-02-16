@@ -30,10 +30,11 @@ import org.usfirst.frc.team2345.robot.subsystems.Liftsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static OI oi;
-	public static Grabber Grabber;
+	
 	public static Drivesystem Drivesystem;
+	public static Grabber Grabber;
 	public static Liftsystem Liftsystem;
+	public static OI oi;
 
 	//public static String gameData;
 	Command autonomousCommand;
@@ -46,9 +47,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		
-		
-		Grabber = new Grabber();
 		Drivesystem = new Drivesystem();
+		Grabber = new Grabber();
 		Liftsystem = new Liftsystem();
 		oi = new OI();
 		

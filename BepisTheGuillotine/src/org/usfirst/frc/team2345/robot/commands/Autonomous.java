@@ -21,20 +21,22 @@ public class Autonomous extends Command {
 
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean first = Robot.Drivesystem.first;
-	public static int counter = Robot.Drivesystem.counter;
 	public static String gameData;
+	
 	public static int fieldPosition;
-	public static Boolean gameSetup = Robot.Grabber.gameSetup;
+	public static Boolean gameSetup;
+	public static int counter;
+	
 	public Autonomous() {
     	requires(Robot.Drivesystem);
     	requires(Robot.Grabber);
     	requires(Robot.Liftsystem);
-        // Use requires() here to declare subsystem dependencies
+      
        
     }
 
     protected void initialize() {
-    	liftEncoder.reset();
+    	
     	
     	ArrayList<String> possibleGameStates = new ArrayList<String>();
 		possibleGameStates.add("LLL");
@@ -50,11 +52,14 @@ public class Autonomous extends Command {
 		int fieldPosition = randomizer.nextInt(3);
 		SmartDashboard.putString("FieldPosition",(String) gameData);
     	Boolean gameSetup=false;
+    	
     }
 
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	gameSetup = Robot.Liftsystem.gameSetup;
+    	counter = Robot.Drivesystem.counter + Robot.Liftsystem.counter + Robot.Grabber.counter;
     	//gameData = DriverStation.getInstance().getGameSpecificMessage();
     	/*if(gameSetup==false) {
     		Robot.Grabber.Viagra();
@@ -62,19 +67,24 @@ public class Autonomous extends Command {
     	*/
     	
     	if(counter==0) {
-    		Robot.Drivesystem.RotateRobot(130);//130=Rotation
-			//Robot.Drivesystem.MoveForwardFeet(3);
-    		//Robot.Drivesystem.RotateRobot(360);
-			
+    		//Robot.Drivesystem.RotateRobot(130);//130=Rotation
+			Robot.Drivesystem.MoveForwardFeet(3);
+    		
+    		//Robot.Liftsystem.SetLiftHeight(820);
+			}
+    	else if(counter==1) {
+    		
+    		Robot.Drivesystem.RotateRobot(130);
     	}
-    	else if(counter==0) {
-    		Robot.Liftsystem.SetLiftHeight(820);
+    	else if(counter==2) {
+    		//Robot.Liftsystem.SetLiftHeight(820);
     	}
+    	
 		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
 		
     	//145 ticks of the lift encoder is one rotation of the axle
     	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false
-    if(gameSetup==true) {	
+ /*   if(gameSetup==true) {	
     	
     	if(gameData=="RRR" || gameData=="RRL"){
     		if(fieldPosition == 1) {
@@ -138,7 +148,7 @@ public class Autonomous extends Command {
     				
     					
     			}
-    			*/
+    			
     		} 
     		else if(fieldPosition == 2) {
     			
@@ -164,7 +174,7 @@ public class Autonomous extends Command {
 
     	
     }
-    	
+    	*/
     	
     	
     

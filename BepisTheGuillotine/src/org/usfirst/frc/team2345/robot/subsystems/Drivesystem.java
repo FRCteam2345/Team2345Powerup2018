@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2345.robot.subsystems;
 
 import org.usfirst.frc.team2345.robot.OI;
+import org.usfirst.frc.team2345.robot.Robot;
 import org.usfirst.frc.team2345.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team2345.robot.RobotMap;
@@ -24,36 +25,44 @@ public class Drivesystem extends Subsystem {
 	public static WPI_TalonSRX BackRightMotor = RobotMap.Backrightmotor;
 	public static Encoder RightSideEncoder = RobotMap.RightSideEncoder;
 	//public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
+	public static double distancemathleftside;
+	public static double distancemathrightside;
+	public static double anglemathleftside;
+	public static double anglemathrightside;
 	public static double distancemath;
 	public static double distancedelta;
 	public static double angleDelta;
 	public static double angleMath;
 	public static ADXRS450_Gyro Gyro = RobotMap.Gyro;
 	public static Boolean first = false;
-	public static int counter = 0;
+	public static int counter;
 	public static DigitalInput frontSwitch = RobotMap.frontSwitch;
 	
 	public void MoveForwardFeet(double Feet)
 	{	
 		
-	double deviation = Gyro.getAngle()/360;
+	double deviation = Gyro.getAngle()/130;
 	double RightEncoder = RightSideEncoder.get();
 	//double LeftEncoder = -LeftSideEncoder.get();
 	double FeetMoved = ((RightEncoder)/360)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
-	distancemath=distancedelta/3;
+	distancemath=distancedelta/.5;
 	
 	if(distancemath>1) {
 		distancemath=1.;
 	}
+	if(distancemath<-1) {
+		distancemath=-1.;
+	}
 	
-	distancemath=distancemath*.3;
+	distancemathleftside=distancemath*.3;
+	distancemathrightside=distancemath*.4;
 	
-	BackLeftMotor.set(distancemath);
-	FrontLeftMotor.set(distancemath);
-	BackRightMotor.set(-distancemath);
-	FrontRightMotor.set(-distancemath);
+	BackLeftMotor.set(distancemathleftside);
+	FrontLeftMotor.set(distancemathleftside);
+	BackRightMotor.set(-distancemathrightside);
+	FrontRightMotor.set(-distancemathrightside);
 	
 	if(distancedelta<=.1 && distancedelta>=-.1) {
 
@@ -66,7 +75,7 @@ public class Drivesystem extends Subsystem {
 		RightSideEncoder.reset();
     	//LeftSideEncoder.reset();
 	}
-	
+		SmartDashboard.putNumber("DriveCounter",(int) counter);
 		SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
 		
     	
@@ -121,12 +130,14 @@ public class Drivesystem extends Subsystem {
 			angleMath=-1.;
 		}
 		
-		angleMath=angleMath*.3;
 		
-		BackLeftMotor.set(angleMath);
-		FrontLeftMotor.set(angleMath);
-		BackRightMotor.set(angleMath);
-		FrontRightMotor.set(angleMath);
+		anglemathleftside=angleMath*.3;
+		anglemathrightside=angleMath*.4;
+		
+		BackLeftMotor.set(anglemathleftside);
+		FrontLeftMotor.set(anglemathleftside);
+		BackRightMotor.set(anglemathrightside);
+		FrontRightMotor.set(anglemathrightside);
 		
 		if(angleDelta<=5 && angleDelta>=-5) {
 
@@ -135,7 +146,7 @@ public class Drivesystem extends Subsystem {
 			BackRightMotor.set(0);
 			FrontRightMotor.set(0);
 			
-			counter += 1;
+			counter +=1;
 			Gyro.reset();
 			RightSideEncoder.reset();
 	    	//LeftSideEncoder.reset();

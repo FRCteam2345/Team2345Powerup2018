@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2345.robot.subsystems;
 
+import org.usfirst.frc.team2345.robot.Robot;
 import org.usfirst.frc.team2345.robot.RobotMap;
 import org.usfirst.frc.team2345.robot.commands.Autonomous;
 import org.usfirst.frc.team2345.robot.commands.LiftControlJoy;
@@ -22,13 +23,16 @@ public class Liftsystem extends Subsystem {
 	public static WPI_TalonSRX ClimbingMotor = RobotMap.ClimbingMotor;
 	public static DigitalInput liftSwitchBottom = RobotMap.switchLiftBottom;
 	public static DigitalInput liftSwitchTop = RobotMap.switchLiftTop;
+	public static VictorSP ViagraMotor = RobotMap.ViagraMotor;
+	public static DigitalInput SwitchGrabberDeployed = RobotMap.SwitchGrabberDeployed;
 	
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean buttonBoolean = false;
 	public static Boolean logicBoolean = false;
 	public static Double heightdelta;
 	public static Double heightMath;
-	public static int counter = Autonomous.counter;
+	public static Boolean gameSetup = false;
+	public static int counter;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -44,6 +48,19 @@ public class Liftsystem extends Subsystem {
 		
 	}
 	
+	public void Viagra(){
+		if(SwitchGrabberDeployed.get()==false){
+			ViagraMotor.set(.4);
+		}
+		else{
+			gameSetup = true;
+			ViagraMotor.set(0);
+		}
+	}
+
+	public void Flaccidity(){
+		ViagraMotor.set(-.4);
+	}	
 	
 	
 public void SetLiftHeight(double height) {
@@ -55,15 +72,19 @@ public void SetLiftHeight(double height) {
 	if(heightMath>1) {
 		heightMath=1.;
 	}
+	if(heightMath<1) {
+		heightMath=1.;
+	}
 	heightMath=heightMath*.3;
 	
 	lifterMotor1.set(heightMath);
 	lifterMotor2.set(heightMath);
-	
+	ViagraMotor.set(heightMath);
 	
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		ViagraMotor.set(0);
 		counter += 1;
 		Brake();
 	}
@@ -125,6 +146,7 @@ public void JoystickLiftControl(Joystick stick) {
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
 		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
 		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		//ViagraMotor.set();
 		logicBoolean=false;
 	}
 	else {
@@ -136,12 +158,21 @@ public void JoystickLiftControl(Joystick stick) {
 		liftEncoder.reset();
 	}
 	
-	
+	if(stick.getRawButton(9)==true) {
+		ViagraMotor.set(.5);
+	}
+	else if(stick.getRawButton(10)==true) {
+		ViagraMotor.set(-.5);
+	}
+	else {
+		ViagraMotor.set(0);
+	}
 	//Brake toggle code for lift
 	if(stick.getRawButton(2)==false) {
 		buttonBoolean=true;
 		
 	}
+	
 	//This right here is a complicated way to turn the B button of the controller into a toggle;
 	else if(buttonBoolean==true) {
 		
@@ -160,21 +191,21 @@ public void JoystickLiftControl(Joystick stick) {
 	if(stick.getRawButton(4)==true) {
 		Climbing();
 	}
-	/*else if(stick.getRawButton(1)==true) {
-		AntiClimbing();
-	}*/
 	else {
+		
 		ClimbingMotor.set(0);
 	}
 	
 	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		//ViagraMotor.set(0);
 		Brake();
 	}
 	else if(liftSwitchTop.get()==false && -stick.getRawAxis(5)>0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		//ViagraMotor.set(0);
 		Brake();
 	}
 	
@@ -187,6 +218,7 @@ public void JoystickLiftControl(Joystick stick) {
 		SmartDashboard.putBoolean("Brake", true);
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		//ViagraMotor.set(0);
 		Brake();
 	}
 	
