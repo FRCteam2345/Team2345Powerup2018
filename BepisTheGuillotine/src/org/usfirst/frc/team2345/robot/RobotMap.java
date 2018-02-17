@@ -20,8 +20,8 @@ public class RobotMap {
 	public static DigitalInput switchLiftTop = new DigitalInput(9);
 	public static DigitalInput switchGrabberIn = new DigitalInput(10);
 	public static DigitalInput frontSwitch = new DigitalInput(11);
-	public static DigitalInput HallEffect1 = new DigitalInput(12);// Retracting 
-	public static DigitalInput HallEffect2 = new DigitalInput(1);// Extracting
+	//public static DigitalInput HallEffect1 = new DigitalInput(12);// Retracting 
+	//public static DigitalInput HallEffect2 = new DigitalInput(1);// Extracting
 	
 	
 	public static VictorSP Grabber1 = new VictorSP(0);
@@ -36,7 +36,7 @@ public class RobotMap {
 	public static VictorSP Actuator = new VictorSP(3);
 	
 	public static Encoder RightSideEncoder = new Encoder(2,3);
-	//public static Encoder LeftSideEncoder = new Encoder(0,1); Currently does not work
+	public static Encoder LeftSideEncoder = new Encoder(0,1); 
 	public static Encoder liftEncoder = new Encoder(4,5);
 	
 	public static WPI_TalonSRX lifterMotor1 = new WPI_TalonSRX(0);

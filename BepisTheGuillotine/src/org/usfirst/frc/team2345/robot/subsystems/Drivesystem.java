@@ -24,7 +24,7 @@ public class Drivesystem extends Subsystem {
 	public static WPI_TalonSRX FrontRightMotor = RobotMap.Frontrightmotor;
 	public static WPI_TalonSRX BackRightMotor = RobotMap.Backrightmotor;
 	public static Encoder RightSideEncoder = RobotMap.RightSideEncoder;
-	//public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
+	public static Encoder LeftSideEncoder = RobotMap.LeftSideEncoder;
 	public static double distancemathleftside;
 	public static double distancemathrightside;
 	public static double anglemathleftside;
@@ -43,8 +43,8 @@ public class Drivesystem extends Subsystem {
 		
 	double deviation = Gyro.getAngle()/130;
 	double RightEncoder = RightSideEncoder.get();
-	//double LeftEncoder = -LeftSideEncoder.get();
-	double FeetMoved = ((RightEncoder)/360)*1.57;
+	double LeftEncoder = LeftSideEncoder.get();
+	double FeetMoved = ((RightEncoder + LeftEncoder)/720)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
 	distancemath=distancedelta/.5;
@@ -73,7 +73,7 @@ public class Drivesystem extends Subsystem {
 		
 		counter += 1;
 		RightSideEncoder.reset();
-    	//LeftSideEncoder.reset();
+    	LeftSideEncoder.reset();
 	}
 		SmartDashboard.putNumber("DriveCounter",(int) counter);
 		SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
@@ -81,7 +81,7 @@ public class Drivesystem extends Subsystem {
     	
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
-		//SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
+		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		/*
 		if(deviation < -.05 || deviation > .05){
 		FrontLeftMotor.set(FrontLeftMotor.get()+.1*deviation);
@@ -149,7 +149,7 @@ public class Drivesystem extends Subsystem {
 			counter +=1;
 			Gyro.reset();
 			RightSideEncoder.reset();
-	    	//LeftSideEncoder.reset();
+	    	LeftSideEncoder.reset();
 		}
 		
 		SmartDashboard.putNumber("Gyro", (double) Gyro.getAngle());
@@ -159,8 +159,8 @@ public class Drivesystem extends Subsystem {
 	public void RobotDriveJoy(Joystick XboxC)
 	{
 		double Rightencoder = RightSideEncoder.get();
-		//double LeftEncoder = -LeftSideEncoder.get();
-		double FeetMoved = ((Rightencoder)/360)*1.57;
+		double LeftEncoder = LeftSideEncoder.get();
+		double FeetMoved = ((Rightencoder)/720)*1.57;
 		
     	
 		
@@ -200,7 +200,7 @@ public class Drivesystem extends Subsystem {
 		
 		SmartDashboard.putNumber("Gyro",(double) Gyro.getAngle());
 		SmartDashboard.putNumber("RightSideEncoder",(double) RightSideEncoder.get());
-		//SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
+		SmartDashboard.putNumber("LeftSideEncoder",(double) LeftSideEncoder.get());
 		
 	}
 	

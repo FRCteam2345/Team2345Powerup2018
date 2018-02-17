@@ -67,18 +67,24 @@ public class Autonomous extends Command {
     	*/
     	
     	if(counter==0) {
+    		Robot.Liftsystem.Viagra();
     		//Robot.Drivesystem.RotateRobot(130);//130=Rotation
-			Robot.Drivesystem.MoveForwardFeet(3);
-    		
+			//Robot.Drivesystem.MoveForwardFeet(3);
+    		//Robot.Liftsystem.SetLiftHeight(435);
     		//Robot.Liftsystem.SetLiftHeight(820);
 			}
     	else if(counter==1) {
     		
-    		Robot.Drivesystem.RotateRobot(130);
+    		//Robot.Drivesystem.RotateRobot(130);
     	}
     	else if(counter==2) {
     		//Robot.Liftsystem.SetLiftHeight(820);
     	}
+    	
+    	/*switch (gameData) {
+    	case "RRR": ;
+    	case "RRL":;
+    	}*/
     	
 		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
 		

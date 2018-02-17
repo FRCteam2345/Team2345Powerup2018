@@ -49,8 +49,8 @@ public class Liftsystem extends Subsystem {
 	}
 	
 	public void Viagra(){
-		if(SwitchGrabberDeployed.get()==false){
-			ViagraMotor.set(.4);
+		if(SwitchGrabberDeployed.get()==true){
+			ViagraMotor.set(-.4);
 		}
 		else{
 			gameSetup = true;
@@ -72,14 +72,23 @@ public void SetLiftHeight(double height) {
 	if(heightMath>1) {
 		heightMath=1.;
 	}
-	if(heightMath<1) {
-		heightMath=1.;
+	if(heightMath<-1) {
+		heightMath=-1.;
 	}
-	heightMath=heightMath*.3;
 	
-	lifterMotor1.set(heightMath);
-	lifterMotor2.set(heightMath);
-	ViagraMotor.set(heightMath);
+	
+	lifterMotor1.set(heightMath*.27);
+	lifterMotor2.set(heightMath*.27);
+	ViagraMotor.set(-heightMath*.9);
+	ClimbingMotor.set(heightMath*.75);
+	if(heightdelta<0) {
+		ViagraMotor.set(-heightMath);
+	}
+	else {
+		ViagraMotor.set(-heightMath*.9);
+	}
+	
+	if(heightdelta<0)
 	
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
@@ -91,6 +100,8 @@ public void SetLiftHeight(double height) {
 	else {
 		Coast();
 	}
+	
+	
 	
 
 }
@@ -128,11 +139,11 @@ public void LiftBottom() {
 }
 
 public void Climbing() {
-	ClimbingMotor.set(-1);
+	ClimbingMotor.set(-.5);
 }
 
 public void AntiClimbing() {
-	ClimbingMotor.set(-1);
+	ClimbingMotor.set(.5);
 }
 
 public void JoystickLiftControl(Joystick stick) {
@@ -144,8 +155,20 @@ public void JoystickLiftControl(Joystick stick) {
 	if(stick.getRawAxis(5)>.3 || stick.getRawAxis(5)<-.3) {
 		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
-		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
-		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		/*lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.27)));
+		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.27)));
+		ViagraMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
+		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);*/
+		lifterMotor1.set(-stick.getRawAxis(5)*.27);
+		lifterMotor2.set(-stick.getRawAxis(5)*.27);
+		
+		ClimbingMotor.set(-stick.getRawAxis(5)*.75);
+		if(stick.getRawAxis(5)<0) {
+			ViagraMotor.set(stick.getRawAxis(5));
+		}
+		else {
+			ViagraMotor.set(stick.getRawAxis(5)*.9);
+		}
 		//ViagraMotor.set();
 		logicBoolean=false;
 	}
@@ -158,15 +181,18 @@ public void JoystickLiftControl(Joystick stick) {
 		liftEncoder.reset();
 	}
 	
+	
 	if(stick.getRawButton(9)==true) {
-		ViagraMotor.set(.5);
+		ViagraMotor.set(.5);//Pulling it in
 	}
+	
 	else if(stick.getRawButton(10)==true) {
-		ViagraMotor.set(-.5);
+		ViagraMotor.set(-.5);//Releasing, going up
 	}
-	else {
+	else if (stick.getRawAxis(5)<.3 && stick.getRawAxis(5)>-.3) {
 		ViagraMotor.set(0);
 	}
+	
 	//Brake toggle code for lift
 	if(stick.getRawButton(2)==false) {
 		buttonBoolean=true;
@@ -190,22 +216,26 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	if(stick.getRawButton(4)==true) {
 		Climbing();
-	}
-	else {
 		
+	}
+	else if(stick.getRawButton(1)==true) {
+		AntiClimbing();//A pulling in 
+		
+	}
+	else if (stick.getRawAxis(5)<.3 && stick.getRawAxis(5)>-.3) {
 		ClimbingMotor.set(0);
 	}
 	
 	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		//ViagraMotor.set(0);
+		ViagraMotor.set(0);
 		Brake();
 	}
 	else if(liftSwitchTop.get()==false && -stick.getRawAxis(5)>0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		//ViagraMotor.set(0);
+		ViagraMotor.set(0);
 		Brake();
 	}
 	
@@ -219,10 +249,12 @@ public void JoystickLiftControl(Joystick stick) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		//ViagraMotor.set(0);
+		//ClimbingMotor.set(0);
 		Brake();
 	}
 	
 	SmartDashboard.putBoolean("BottomSwitch",(Boolean) liftSwitchBottom.get());
+	SmartDashboard.putBoolean("GrabberSwitch",(Boolean) SwitchGrabberDeployed.get());
 	SmartDashboard.putNumber("LiftValue",(double) stick.getRawAxis(5) );
 	SmartDashboard.putNumber("LiftEncoder",(int) liftheight);
 }
