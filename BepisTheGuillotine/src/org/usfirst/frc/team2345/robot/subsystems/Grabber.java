@@ -22,7 +22,7 @@ public class Grabber extends Subsystem {
 	public static VictorSP Grabber2 = RobotMap.Grabber2;
 	public static Timer AutoTime = new Timer();
 	
-	public static VictorSP Actuator = RobotMap.Actuator;
+//	public static VictorSP Actuator = RobotMap.Actuator;
 	//public static DigitalInput HallEffect1 = RobotMap.HallEffect1;
 	//public static DigitalInput HallEffect2 = RobotMap.HallEffect2;
 	//public static Counter HallEffectC = RobotMap.HallEffectC;
@@ -49,6 +49,11 @@ public void angleGrabbing(){
 	Grabber2.set(-.6);
 }
 
+public void Stop() {
+	Grabber1.set(0);
+	Grabber2.set(0);
+}
+
 
 public void Releasing(){
 		Grabber1.set(-1);
@@ -57,13 +62,19 @@ public void Releasing(){
 
 public void ActuatorOut() {
 	// Actuator will Extend
-	Actuator.set(.3);
+//	Actuator.set(.3);
 	
 	
 }
 
 public void AutonomousGrabbing() {
-	Timer.start();
+	Grabber1.set(-.6);
+	Grabber2.set(-.6);
+}
+
+public void Grabbersoff() {
+	Grabber1.set(0);
+	Grabber2.set(0);
 }
 
 /*public void ActuatorIn() {
@@ -94,7 +105,7 @@ public void JoystickGrabberControl(Joystick stick) {
 	
 	
 	else {
-		Actuator.set(0);
+	//	Actuator.set(0);
 		Grabber1.set(0);
 		Grabber2.set(0);
 		

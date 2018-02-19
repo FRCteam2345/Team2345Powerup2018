@@ -22,7 +22,7 @@ public class Autonomous extends Command {
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
 	public static Boolean first = Robot.Drivesystem.first;
 	public static String gameData;
-	
+	public static Boolean gameSetup2;
 	public static int fieldPosition;
 	public static Boolean gameSetup;
 	public static int counter;
@@ -58,39 +58,59 @@ public class Autonomous extends Command {
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	gameSetup2 = Robot.Drivesystem.gameSetup2;
     	gameSetup = Robot.Liftsystem.gameSetup;
     	counter = Robot.Drivesystem.counter + Robot.Liftsystem.counter + Robot.Grabber.counter;
     	//gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	/*if(gameSetup==false) {
-    		Robot.Grabber.Viagra();
+    	if(gameSetup==false) {
+    		Robot.Liftsystem.Tilt();
+    		Robot.Grabber.Grabbing();
     	}
-    	*/
+    	else if(gameSetup2==false) {
+    		Robot.Grabber.Stop();
+    		gameSetup2=true;
+    	}
     	
-    	if(counter==0) {
-    		Robot.Liftsystem.Viagra();
-    		//Robot.Drivesystem.RotateRobot(130);//130=Rotation
-			//Robot.Drivesystem.MoveForwardFeet(3);
+    	
+    	
+    /*	if(counter==0) {
+    		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+			Robot.Drivesystem.MoveForwardFeet(20);
     		//Robot.Liftsystem.SetLiftHeight(435);
     		//Robot.Liftsystem.SetLiftHeight(820);
 			}
     	else if(counter==1) {
-    		
-    		//Robot.Drivesystem.RotateRobot(130);
+    		Robot.Drivesystem.reset();
     	}
     	else if(counter==2) {
+    		Robot.Drivesystem.RotateRobot(64.5);
+    	}
+    	
+    	else if (counter==3) {
+    		Robot.Drivesystem.gyroreset();
+    	}
+    	else if(counter==4) {
+    		Robot.Drivesystem.MoveForwardFeet(10);
     		//Robot.Liftsystem.SetLiftHeight(820);
+    	}
+    	else if(counter==5) {
+    		Robot.Drivesystem.reset();
+    	}
+    	else if(counter==6) {
+    		Robot.Drivesystem.RotateRobot(64.5);
     	}
     	
     	/*switch (gameData) {
-    	case "RRR": ;
-    	case "RRL":;
+    	case "RRR": case "RRL":;
+    		
+    		
     	}*/
     	
 		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
 		
     	//145 ticks of the lift encoder is one rotation of the axle
     	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false
- /*   if(gameSetup==true) {	
+ /*   if(gameSetup2==true) {	
     	
     	if(gameData=="RRR" || gameData=="RRL"){
     		if(fieldPosition == 1) {

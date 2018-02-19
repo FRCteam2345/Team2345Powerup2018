@@ -23,7 +23,7 @@ public class Liftsystem extends Subsystem {
 	public static WPI_TalonSRX ClimbingMotor = RobotMap.ClimbingMotor;
 	public static DigitalInput liftSwitchBottom = RobotMap.switchLiftBottom;
 	public static DigitalInput liftSwitchTop = RobotMap.switchLiftTop;
-	public static VictorSP ViagraMotor = RobotMap.ViagraMotor;
+	public static VictorSP TiltMotor = RobotMap.TiltMotor;
 	public static DigitalInput SwitchGrabberDeployed = RobotMap.SwitchGrabberDeployed;
 	
 	public static Encoder liftEncoder = RobotMap.liftEncoder;
@@ -33,6 +33,7 @@ public class Liftsystem extends Subsystem {
 	public static Double heightMath;
 	public static Boolean gameSetup = false;
 	public static int counter;
+	public static int AutoCounter;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -48,19 +49,19 @@ public class Liftsystem extends Subsystem {
 		
 	}
 	
-	public void Viagra(){
-		if(SwitchGrabberDeployed.get()==true){
-			ViagraMotor.set(-.4);
+	public void Tilt(){
+		if(AutoCounter<20){
+			TiltMotor.set(-1);
+			AutoCounter+=1;
+			SmartDashboard.putNumber("AutoCounter",(int) AutoCounter);
 		}
 		else{
 			gameSetup = true;
-			ViagraMotor.set(0);
+			TiltMotor.set(0);
 		}
 	}
+	
 
-	public void Flaccidity(){
-		ViagraMotor.set(-.4);
-	}	
 	
 	
 public void SetLiftHeight(double height) {
@@ -76,24 +77,30 @@ public void SetLiftHeight(double height) {
 		heightMath=-1.;
 	}
 	
-	
-	lifterMotor1.set(heightMath*.27);
-	lifterMotor2.set(heightMath*.27);
-	ViagraMotor.set(-heightMath*.9);
-	ClimbingMotor.set(heightMath*.75);
-	if(heightdelta<0) {
-		ViagraMotor.set(-heightMath);
+	if(heightMath<0) {
+		lifterMotor1.set(heightMath*.18);
+		lifterMotor2.set(heightMath*.18);
+		
+		ClimbingMotor.set(heightMath*.75);
 	}
-	else {
-		ViagraMotor.set(-heightMath*.9);
+	else if(heightMath>0) {
+		lifterMotor1.set(heightMath*.33);
+		lifterMotor2.set(heightMath*.33);
+		
+		ClimbingMotor.set(heightMath*.73);
 	}
 	
-	if(heightdelta<0)
+	
+
+	
+	
+	
 	
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		ViagraMotor.set(0);
+		
+		ClimbingMotor.set(0);
 		counter += 1;
 		Brake();
 	}
@@ -139,11 +146,11 @@ public void LiftBottom() {
 }
 
 public void Climbing() {
-	ClimbingMotor.set(-.5);
+	ClimbingMotor.set(-1);
 }
 
 public void AntiClimbing() {
-	ClimbingMotor.set(.5);
+	ClimbingMotor.set(1);
 }
 
 public void JoystickLiftControl(Joystick stick) {
@@ -152,26 +159,41 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	double liftheight = liftEncoder.get();
 	
-	if(stick.getRawAxis(5)>.3 || stick.getRawAxis(5)<-.3) {
+	if(stick.getRawAxis(5)<-.3) {
 		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
-		/*lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.27)));
-		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.27)));
-		ViagraMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
-		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);*/
-		lifterMotor1.set(-stick.getRawAxis(5)*.27);
-		lifterMotor2.set(-stick.getRawAxis(5)*.27);
+		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
+		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);
+		/*lifterMotor1.set(-stick.getRawAxis(5)*.35);
+		lifterMotor2.set(-stick.getRawAxis(5)*.35);
 		
-		ClimbingMotor.set(-stick.getRawAxis(5)*.75);
-		if(stick.getRawAxis(5)<0) {
-			ViagraMotor.set(stick.getRawAxis(5));
+		
+		ClimbingMotor.set(-stick.getRawAxis(5)*.73);/*
+		
+		
+		/*if(stick.getRawAxis(5)<0) {
+			TiltMotor.set(stick.getRawAxis(5));
 		}
 		else {
-			ViagraMotor.set(stick.getRawAxis(5)*.9);
-		}
-		//ViagraMotor.set();
+			TiltMotor.set(stick.getRawAxis(5)*.9);
+		}*/
+		
+		
+		//TiltMotor.set();
 		logicBoolean=false;
 	}
+	else if(stick.getRawAxis(5)>.3) {
+		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
+		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
+		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
+		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);
+		
+		
+		logicBoolean=false;
+	}
+	
 	else {
 		logicBoolean=true;
 	}
@@ -183,14 +205,14 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	
 	if(stick.getRawButton(9)==true) {
-		ViagraMotor.set(.5);//Pulling it in
+		TiltMotor.set(.5);//Pulling it in
 	}
 	
 	else if(stick.getRawButton(10)==true) {
-		ViagraMotor.set(-.5);//Releasing, going up
+		TiltMotor.set(-.8);//Releasing, going up
 	}
-	else if (stick.getRawAxis(5)<.3 && stick.getRawAxis(5)>-.3) {
-		ViagraMotor.set(0);
+	else {
+		TiltMotor.set(0);
 	}
 	
 	//Brake toggle code for lift
@@ -229,13 +251,15 @@ public void JoystickLiftControl(Joystick stick) {
 	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		ViagraMotor.set(0);
+		
+		ClimbingMotor.set(0);
 		Brake();
 	}
 	else if(liftSwitchTop.get()==false && -stick.getRawAxis(5)>0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		ViagraMotor.set(0);
+		
+		ClimbingMotor.set(0);
 		Brake();
 	}
 	
@@ -248,7 +272,7 @@ public void JoystickLiftControl(Joystick stick) {
 		SmartDashboard.putBoolean("Brake", true);
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		//ViagraMotor.set(0);
+		//TiltMotor.set(0);
 		//ClimbingMotor.set(0);
 		Brake();
 	}

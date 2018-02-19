@@ -33,10 +33,25 @@ public class Drivesystem extends Subsystem {
 	public static double distancedelta;
 	public static double angleDelta;
 	public static double angleMath;
+	public static Boolean gameSetup2 = false;
 	public static ADXRS450_Gyro Gyro = RobotMap.Gyro;
 	public static Boolean first = false;
 	public static int counter;
+	public static int timer;
 	public static DigitalInput frontSwitch = RobotMap.frontSwitch;
+	
+	public void gyroreset() {
+		counter += 1;
+		Gyro.reset();
+		RightSideEncoder.reset();
+    	LeftSideEncoder.reset();
+	}
+	
+	public void reset() {
+		counter += 1;
+		RightSideEncoder.reset();
+    	LeftSideEncoder.reset();
+	}
 	
 	public void MoveForwardFeet(double Feet)
 	{	
@@ -47,7 +62,7 @@ public class Drivesystem extends Subsystem {
 	double FeetMoved = ((RightEncoder + LeftEncoder)/720)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
-	distancemath=distancedelta/.5;
+	distancemath=distancedelta/1;
 	
 	if(distancemath>1) {
 		distancemath=1.;
@@ -56,7 +71,7 @@ public class Drivesystem extends Subsystem {
 		distancemath=-1.;
 	}
 	
-	distancemathleftside=distancemath*.3;
+	distancemathleftside=distancemath*.32;
 	distancemathrightside=distancemath*.4;
 	
 	BackLeftMotor.set(distancemathleftside);
@@ -72,8 +87,7 @@ public class Drivesystem extends Subsystem {
 		FrontRightMotor.set(0);
 		
 		counter += 1;
-		RightSideEncoder.reset();
-    	LeftSideEncoder.reset();
+		
 	}
 		SmartDashboard.putNumber("DriveCounter",(int) counter);
 		SmartDashboard.putNumber("FeetMoved", (double) FeetMoved);
@@ -94,6 +108,24 @@ public class Drivesystem extends Subsystem {
 		
 		
 	}
+	public void rammingCommand() {
+		if(timer<50) {
+		BackLeftMotor.set(.2);
+		FrontLeftMotor.set(.2);
+		BackRightMotor.set(-.2);
+		FrontRightMotor.set(-.2);
+		timer+=1;
+		SmartDashboard.putNumber("Timer",(int)timer);
+		}
+		else {
+			BackLeftMotor.set(0);
+			FrontLeftMotor.set(0);
+			BackRightMotor.set(0);
+			FrontRightMotor.set(0);
+			gameSetup2=true;
+		}
+	}
+	
 	
 	public  void fowardTillSwitch() 
 	{
@@ -101,8 +133,8 @@ public class Drivesystem extends Subsystem {
 		{
 			BackLeftMotor.set(.4);
 			FrontLeftMotor.set(.4);
-			BackRightMotor.set(.4);
-			FrontRightMotor.set(.4);
+			BackRightMotor.set(-.4);
+			FrontRightMotor.set(-.4);
 		}
 		
 		else 
@@ -118,10 +150,10 @@ public class Drivesystem extends Subsystem {
 	
 	public void RotateRobot(double Angle)
 	{
-		double AngleRotated = Gyro.getAngle();
+		double AngleRotated = Gyro.getAngle();//A 360 rotation for the robot at the angle it is at now is 128 2.8125
 		
 		angleDelta = Angle-AngleRotated;
-		angleMath=angleDelta/16.25;
+		angleMath=angleDelta/13;
 		
 		if(angleMath>1) {
 			angleMath=1.;
@@ -131,7 +163,7 @@ public class Drivesystem extends Subsystem {
 		}
 		
 		
-		anglemathleftside=angleMath*.3;
+		anglemathleftside=angleMath*.32;
 		anglemathrightside=angleMath*.4;
 		
 		BackLeftMotor.set(anglemathleftside);
@@ -139,7 +171,7 @@ public class Drivesystem extends Subsystem {
 		BackRightMotor.set(anglemathrightside);
 		FrontRightMotor.set(anglemathrightside);
 		
-		if(angleDelta<=5 && angleDelta>=-5) {
+		if(angleDelta<=.5 && angleDelta>=-.5) {
 
 			BackLeftMotor.set(0);
 			FrontLeftMotor.set(0);
@@ -147,12 +179,10 @@ public class Drivesystem extends Subsystem {
 			FrontRightMotor.set(0);
 			
 			counter +=1;
-			Gyro.reset();
-			RightSideEncoder.reset();
-	    	LeftSideEncoder.reset();
+			
 		}
 		
-		SmartDashboard.putNumber("Gyro", (double) Gyro.getAngle());
+		SmartDashboard.putNumber("Gyro", (double) AngleRotated);
     		
 	}
 
@@ -160,7 +190,7 @@ public class Drivesystem extends Subsystem {
 	{
 		double Rightencoder = RightSideEncoder.get();
 		double LeftEncoder = LeftSideEncoder.get();
-		double FeetMoved = ((Rightencoder)/720)*1.57;
+		double FeetMoved = ((Rightencoder+LeftEncoder)/720)*1.57;
 		
     	
 		
@@ -184,10 +214,10 @@ public class Drivesystem extends Subsystem {
 		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57));*/
 		
 		
-		FrontLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
-		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
-		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
-		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.35);
+		FrontLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.32);
+		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.32);
+		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.4);
+		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.4);
 		
 	
 		
