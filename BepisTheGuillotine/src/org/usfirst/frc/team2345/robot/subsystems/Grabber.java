@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Grabber extends Subsystem {
 	public static VictorSP Grabber1 = RobotMap.Grabber1;
 	public static VictorSP Grabber2 = RobotMap.Grabber2;
-	public static Timer AutoTime = new Timer();
+	public static DigitalInput bottomSwitch = RobotMap.switchLiftBottom;
 	
 //	public static VictorSP Actuator = RobotMap.Actuator;
 	//public static DigitalInput HallEffect1 = RobotMap.HallEffect1;
@@ -31,7 +31,7 @@ public class Grabber extends Subsystem {
 	
 	
 	public static double PotentiometerVoltage;
-	
+	public static int autoTimer;
 	public static int counter;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -40,8 +40,8 @@ public class Grabber extends Subsystem {
 
 
 public void Grabbing(){
-	Grabber1.set(.6);
-	Grabber2.set(-.6);
+	Grabber1.set(-.3);
+	Grabber2.set(.3);
 }
 
 public void angleGrabbing(){
@@ -56,9 +56,24 @@ public void Stop() {
 
 
 public void Releasing(){
-		Grabber1.set(-1);
-		Grabber2.set(1);
+		Grabber1.set(1);
+		Grabber2.set(-1);
 }
+
+public void AutoReleasing(){
+	if(autoTimer<30) {
+		Grabber1.set(1);
+		Grabber2.set(-1);	
+		autoTimer+=1;
+	}
+	else {
+		Grabber1.set(0);
+		Grabber2.set(0);
+		counter+=1;
+	}
+	
+}
+
 
 public void ActuatorOut() {
 	// Actuator will Extend

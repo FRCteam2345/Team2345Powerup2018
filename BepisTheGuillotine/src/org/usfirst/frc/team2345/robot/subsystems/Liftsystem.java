@@ -81,13 +81,13 @@ public void SetLiftHeight(double height) {
 		lifterMotor1.set(heightMath*.18);
 		lifterMotor2.set(heightMath*.18);
 		
-		ClimbingMotor.set(heightMath*.75);
+		ClimbingMotor.set(heightMath*.9);
 	}
 	else if(heightMath>0) {
-		lifterMotor1.set(heightMath*.33);
-		lifterMotor2.set(heightMath*.33);
+		lifterMotor1.set(heightMath*.3);
+		lifterMotor2.set(heightMath*.3);
 		
-		ClimbingMotor.set(heightMath*.73);
+		ClimbingMotor.set(heightMath*.9);
 	}
 	
 	
@@ -108,21 +108,24 @@ public void SetLiftHeight(double height) {
 		Coast();
 	}
 	
-	
+	//SmartDashboard.putNumber("LiftValue",(double) stick.getRawAxis(5) );
+	SmartDashboard.putNumber("LiftEncoder",(int) liftheight);
 	
 
 }
 
 public void LiftTop() {
 	if(liftSwitchTop.get()==true) {
-		lifterMotor1.set(.5);
-		lifterMotor2.set(.5);
+		lifterMotor1.set(.3);
+		lifterMotor2.set(.3);
+		ClimbingMotor.set(1);
 		Coast();
 	}
 	else {
 		counter += 1;
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		ClimbingMotor.set(0);
 		Brake();
 	}
 	
@@ -131,14 +134,16 @@ public void LiftTop() {
 public void LiftBottom() {
 	//SmartDashboard.putBoolean("LiftBottom", true);
 	if(liftSwitchBottom.get()==true) {
-		lifterMotor1.set(-.5);
-		lifterMotor2.set(-.5);
+		lifterMotor1.set(-.18);
+		lifterMotor2.set(-.18);
+		ClimbingMotor.set(-1);
 		Coast();
 	}
 	else {
 		counter += 1;
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
+		ClimbingMotor.set(0);
 		liftEncoder.reset();
 		Brake();
 	}
@@ -162,10 +167,10 @@ public void JoystickLiftControl(Joystick stick) {
 	if(stick.getRawAxis(5)<-.3) {
 		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
 		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
-		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
-		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.35)));
+		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.29)));
+		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.29)));
 		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
-		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);
+		ClimbingMotor.set(-stick.getRawAxis(5));
 		/*lifterMotor1.set(-stick.getRawAxis(5)*.35);
 		lifterMotor2.set(-stick.getRawAxis(5)*.35);
 		
@@ -188,7 +193,7 @@ public void JoystickLiftControl(Joystick stick) {
 		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
 		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
 		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
-		ClimbingMotor.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.75);
+		ClimbingMotor.set(-stick.getRawAxis(5));
 		
 		
 		logicBoolean=false;

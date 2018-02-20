@@ -56,13 +56,13 @@ public class Drivesystem extends Subsystem {
 	public void MoveForwardFeet(double Feet)
 	{	
 		
-	double deviation = Gyro.getAngle()/130;
+	double deviation = Gyro.getAngle()/129;
 	double RightEncoder = RightSideEncoder.get();
 	double LeftEncoder = LeftSideEncoder.get();
 	double FeetMoved = ((RightEncoder + LeftEncoder)/720)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
-	distancemath=distancedelta/1;
+	distancemath=distancedelta/3;
 	
 	if(distancemath>1) {
 		distancemath=1.;
@@ -71,8 +71,8 @@ public class Drivesystem extends Subsystem {
 		distancemath=-1.;
 	}
 	
-	distancemathleftside=distancemath*.32;
-	distancemathrightside=distancemath*.4;
+	distancemathleftside=distancemath*.42;
+	distancemathrightside=distancemath*.52;
 	
 	BackLeftMotor.set(distancemathleftside);
 	FrontLeftMotor.set(distancemathleftside);
@@ -153,7 +153,7 @@ public class Drivesystem extends Subsystem {
 		double AngleRotated = Gyro.getAngle();//A 360 rotation for the robot at the angle it is at now is 128 2.8125
 		
 		angleDelta = Angle-AngleRotated;
-		angleMath=angleDelta/13;
+		angleMath=angleDelta/10;
 		
 		if(angleMath>1) {
 			angleMath=1.;
@@ -214,10 +214,10 @@ public class Drivesystem extends Subsystem {
 		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57));*/
 		
 		
-		FrontLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.32);
-		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.32);
-		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.4);
-		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.4);
+		FrontLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.42);
+		BackLeftMotor.set((forward-backward-turn)*Math.sin((forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.42);
+		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.5);
+		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.5);
 		
 	
 		
