@@ -62,7 +62,7 @@ public class Autonomous extends Command {
     	gameSetup = Robot.Liftsystem.gameSetup;
     	counter = Robot.Drivesystem.counter + Robot.Liftsystem.counter + Robot.Grabber.counter;
     	//gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	if(true==false) {
+    	if(gameSetup==false) {
     		Robot.Liftsystem.Tilt();
     		Robot.Grabber.Grabbing();
     	}

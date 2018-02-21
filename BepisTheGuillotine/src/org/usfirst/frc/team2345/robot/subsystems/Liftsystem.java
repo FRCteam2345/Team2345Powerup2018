@@ -243,14 +243,15 @@ public void JoystickLiftControl(Joystick stick) {
 	
 	if(stick.getRawButton(4)==true) {
 		Climbing();
-		
+		ClimbingMotor.setNeutralMode(NeutralMode.Coast);
 	}
 	else if(stick.getRawButton(1)==true) {
 		AntiClimbing();//A pulling in 
-		
+		ClimbingMotor.setNeutralMode(NeutralMode.Coast);
 	}
 	else if (stick.getRawAxis(5)<.3 && stick.getRawAxis(5)>-.3) {
 		ClimbingMotor.set(0);
+		ClimbingMotor.setNeutralMode(NeutralMode.Brake);
 	}
 	
 	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
