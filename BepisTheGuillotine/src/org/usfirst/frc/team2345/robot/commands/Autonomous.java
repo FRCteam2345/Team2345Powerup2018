@@ -71,8 +71,8 @@ public class Autonomous extends Command {
     		//Robot.Drivesystem.reset();
     		gameSetup2=true;
     	}
-    	
-   
+
+   /*
     	if(gameSetup2==true) {
     		if(counter==0 || counter==1) {
         		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
@@ -147,7 +147,7 @@ public class Autonomous extends Command {
     		//	Robot.Drivesystem.reset();}
     		}
     		
-    	}    		/*if(counter==0 || counter==1) {
+    	}   */ 		/*if(counter==0 || counter==1) {
         		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
     			//Robot.Drivesystem.MoveForwardFeet(20);
         		Robot.Drivesystem.MoveForwardFeet(25.33);
@@ -252,7 +252,7 @@ public class Autonomous extends Command {
 		
     	//145 ticks of the lift encoder is one rotation of the axle
     	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false
- /*   if(gameSetup2==true) {	
+ /*   if(gameSetup2==true) { 
     	
     	if(gameData=="RRR" || gameData=="RRL"){
     		if(fieldPosition == 1) {
@@ -281,7 +281,8 @@ public class Autonomous extends Command {
     	else if(gameData=="LLL" || gameData=="LLR"){
     		
     		if(fieldPosition == 1) {
-    			/*if(counter==1) {
+    			/*
+    			if(counter==1) {
     				Robot.Drivesystem.MoveForwardFeet(24.5);
     			}
     			else if(counter==2) {
@@ -313,11 +314,11 @@ public class Autonomous extends Command {
     			}
     			else if(counter==12) {
 	
-    				
+    				}
     					
     			}
     			
-    		} 
+    		
     		else if(fieldPosition == 2) {
     			
     		}
@@ -341,13 +342,104 @@ public class Autonomous extends Command {
     	}
 
     	
-    }
-    	*/
+    }*/
+    	if(gameSetup2==true) { 
+        	
+        	if(fieldPosition == 1) {
+        		
+        	}
+        	else if(fieldPosition == 2) {
+        		if(gameData=="LRR" || gameData=="LRL" || gameData=="LLL" || gameData=="LLR") {
+        			if(counter==0 || counter==1) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.MoveForwardFeet(25.33);
+                		Robot.Liftsystem.SetLiftHeight(1350);
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(-32.25);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(.371);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.AutoReleasing();
+            		}
+            		else if(counter==8) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==9) {
+            			Robot.Drivesystem.MoveForwardFeet(-1);
+            		}
+            		else if(counter==10) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==11) {
+            			Robot.Drivesystem.RotateRobot(-32.25);
+            		}
+            		else if(counter==12) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==13 || counter==14) {
+            			Robot.Drivesystem.MoveForwardFeet(5.271);
+            			Robot.Liftsystem.LiftBottom();
+            		}
+            		else if(counter==15) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==16) {
+            			Robot.Drivesystem.RotateRobot(90);
+            		}
+            		else if(counter==17) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==18) {
+            			Robot.Drivesystem.MoveForwardFeet(4.285);
+            		}
+            		else if(counter==19) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==19) {
+            			Robot.Drivesystem.RotateRobot(-90);
+            		}
+            		else if(counter==19) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==20) {
+            			Robot.Drivesystem.MoveForwardFeet(3.23);
+            			Robot.Grabber.AutonomousGrabbing();
+            		}
+            		else if(counter==21) {
+            			Robot.Drivesystem.reset();
+            		}
+        		}
+        		else if(gameData=="RLL" || gameData=="RLR" || gameData=="RRR" || gameData=="RRL") {
+        			
+        		}
+        	}
+        	
+        	else if(fieldPosition == 3) {
+        		
+        	}
+
+        	
+        }
     	
+}	
     	
     
     	
-    }
+
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

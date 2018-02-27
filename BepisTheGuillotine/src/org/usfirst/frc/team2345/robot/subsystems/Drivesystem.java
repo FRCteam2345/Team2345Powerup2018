@@ -51,6 +51,7 @@ public class Drivesystem extends Subsystem {
 		counter += 1;
 		RightSideEncoder.reset();
     	LeftSideEncoder.reset();
+    	
 	}
 	
 	public void MoveForwardFeet(double Feet)
@@ -62,7 +63,7 @@ public class Drivesystem extends Subsystem {
 	double FeetMoved = ((RightEncoder + LeftEncoder)/720)*1.57;
 	
 	distancedelta = Feet-FeetMoved;
-	distancemath=distancedelta/3;
+	distancemath=distancedelta/1.5;
 	
 	if(distancemath>1) {
 		distancemath=1.;
@@ -86,7 +87,20 @@ public class Drivesystem extends Subsystem {
 		BackRightMotor.set(0);
 		FrontRightMotor.set(0);
 		
+		FrontRightMotor.setNeutralMode(NeutralMode.Brake);
+		BackRightMotor.setNeutralMode(NeutralMode.Brake);
+		FrontLeftMotor.setNeutralMode(NeutralMode.Brake);
+		BackLeftMotor.setNeutralMode(NeutralMode.Brake);
+		
 		counter += 1;
+		
+	}
+	else {
+		
+		FrontRightMotor.setNeutralMode(NeutralMode.Coast);
+		BackRightMotor.setNeutralMode(NeutralMode.Coast);
+		FrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+		BackLeftMotor.setNeutralMode(NeutralMode.Coast);
 		
 	}
 		SmartDashboard.putNumber("DriveCounter",(int) counter);
@@ -181,6 +195,12 @@ public class Drivesystem extends Subsystem {
 			counter +=1;
 			
 		}
+		else {
+			FrontRightMotor.setNeutralMode(NeutralMode.Coast);
+			BackRightMotor.setNeutralMode(NeutralMode.Coast);
+			FrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+			BackLeftMotor.setNeutralMode(NeutralMode.Coast);
+		}
 		
 		SmartDashboard.putNumber("Gyro", (double) AngleRotated);
     		
@@ -219,7 +239,10 @@ public class Drivesystem extends Subsystem {
 		FrontRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.5);
 		BackRightMotor.set((-forward+backward-turn)*Math.sin((+forwardBasic+backwardBasic+Math.abs(turnBasic))*1.57)*.5);
 		
-	
+		FrontRightMotor.setNeutralMode(NeutralMode.Coast);
+		BackRightMotor.setNeutralMode(NeutralMode.Coast);
+		FrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+		BackLeftMotor.setNeutralMode(NeutralMode.Coast);
 		
 		/*FrontLeftMotor.set(forward-backward-turn);
 		BackLeftMotor.set(forward-backward-turn);

@@ -77,8 +77,7 @@ public class Motors extends Command {
     		Actuator.set(0);
     		Grabber1.set(0);
     		Grabber2.set(0);
-    		Grabber1.set(0);
-    		Grabber2.set(0);
+    		
     	}
     	
     	
