@@ -72,291 +72,208 @@ public class Autonomous extends Command {
     		gameSetup2=true;
     	}
 
-   /*
-    	if(gameSetup2==true) {
-    		if(counter==0 || counter==1) {
-        		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
-    			//Robot.Drivesystem.MoveForwardFeet(20);
-        		Robot.Drivesystem.MoveForwardFeet(12.32);
-        		Robot.Liftsystem.SetLiftHeight(800);
-    		//	Robot.Drivesystem.RotateRobot(-32.25);
-    		}
-    		else if(counter==2) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==3) {
-    		Robot.Drivesystem.RotateRobot(-32.25);//Rotate Robot is based on the gyro having 129ish ticks per rotation so to rotate a number proportionate with 129
-    		}
-    		else if(counter==4) {
-    			Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==5) {
-    			Robot.Drivesystem.MoveForwardFeet(1.5);//MakeSmalldistancecode
-    		}
-    		else if(counter==6) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==7) {
-    			Robot.Grabber.AutoReleasing();
-    		}
-    		else if(counter==8) {
-    		//	Robot.Drivesystem.reset();
-    		}
-    		else if(counter==9) {
-    			//Robot.Drivesystem.MoveForwardFeet(-1);
-    		}
-    		else if(counter==10) {
-    			//Robot.Drivesystem.reset();
-    		}
-    		else if(counter==11) {
-    			//Robot.Drivesystem.RotateRobot(-32.25);
-    		}
-    		else if(counter==12) {
-    			//Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==13 || counter==14) {
-    			//Robot.Drivesystem.MoveForwardFeet(5.271);
-    			//Robot.Liftsystem.LiftBottom();
-    		}
-    		else if(counter==15) {
-    			//Robot.Drivesystem.reset();
-    		}
-    		else if(counter==16) {
-    			//Robot.Drivesystem.RotateRobot(90);
-    		}
-    		else if(counter==17) {
-    			//Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==18) {
-    			//Robot.Drivesystem.MoveForwardFeet(4.285);
-    		}
-    		else if(counter==19) {
-    			//Robot.Drivesystem.reset();
-    		}
-    		else if(counter==20) {
-    		//Robot.Drivesystem.RotateRobot(-90);
-    		}
-    		else if(counter==21) {
-    			//Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==22) {
-    		//Robot.Drivesystem.MoveForwardFeet(3.23);
-    			//Robot.Grabber.AutonomousGrabbing();
-    		}
-    		else if(counter==23) {
-    		//	Robot.Drivesystem.reset();}
-    		}
-    		
-    	}   */ 		/*if(counter==0 || counter==1) {
-        		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
-    			//Robot.Drivesystem.MoveForwardFeet(20);
-        		Robot.Drivesystem.MoveForwardFeet(25.33);
-        		Robot.Liftsystem.SetLiftHeight(1350);
-    		//	Robot.Drivesystem.RotateRobot(-32.25);
-    			}
-    		else if(counter==2) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==3) {
-    		Robot.Drivesystem.RotateRobot(-32.25);
-    		}
-    		else if(counter==4) {
-    			Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==5) {
-    			Robot.Drivesystem.MoveForwardFeet(.371);//MakeSmalldistancecode
-    		}
-    		else if(counter==6) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==7) {
-    			Robot.Grabber.AutoReleasing();
-    		}
-    		else if(counter==8) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==9) {
-    			Robot.Drivesystem.MoveForwardFeet(-1);
-    		}
-    		else if(counter==10) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==11) {
-    			Robot.Drivesystem.RotateRobot(-32.25);
-    		}
-    		else if(counter==12) {
-    			Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==13 || counter==14) {
-    			Robot.Drivesystem.MoveForwardFeet(5.271);
-    			Robot.Liftsystem.LiftBottom();
-    		}
-    		else if(counter==15) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==16) {
-    			Robot.Drivesystem.RotateRobot(90);
-    		}
-    		else if(counter==17) {
-    			Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==18) {
-    			Robot.Drivesystem.MoveForwardFeet(4.285);
-    		}
-    		else if(counter==19) {
-    			Robot.Drivesystem.reset();
-    		}
-    		else if(counter==19) {
-    			Robot.Drivesystem.RotateRobot(-90);
-    		}
-    		else if(counter==19) {
-    			Robot.Drivesystem.gyroreset();
-    		}
-    		else if(counter==20) {
-    			Robot.Drivesystem.MoveForwardFeet(3.23);
-    			Robot.Grabber.AutonomousGrabbing();
-    		}
-    		else if(counter==21) {
-    			Robot.Drivesystem.reset();
-    		}*/
-    	//}
-    	
-    /*	else if(counter==1) {
-    		Robot.Drivesystem.reset();
-    	}
-    	else if(counter==2) {
-    		Robot.Drivesystem.RotateRobot(64.5);
-    	}
-    	
-    	else if (counter==3) {
-    		Robot.Drivesystem.gyroreset();
-    	}
-    	else if(counter==4) {
-    		Robot.Drivesystem.MoveForwardFeet(10);
-    		//Robot.Liftsystem.SetLiftHeight(820);
-    	}
-    	else if(counter==5) {
-    		Robot.Drivesystem.reset();
-    	}
-    	else if(counter==6) {
-    		Robot.Drivesystem.RotateRobot(64.5);
-    	}*/
-    	
-    	/*switch (gameData) {
-    	case "RRR": case "RRL":;
-    		
-    		
-    	}*/
-    	
-		//Way for setting up an autonomous command chain, can't use two drive train functions at the same time, but can use seperate systems together.
-		
-    	//145 ticks of the lift encoder is one rotation of the axle
-    	//The autonomous code is currently coded out by the conditional never being met. To activate it use the variable gameSetup instead of false
- /*   if(gameSetup2==true) { 
-    	
-    	if(gameData=="RRR" || gameData=="RRL"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    	}
-    	
-    	else if(gameData=="RLL" || gameData=="RLR"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    	}
-
-    	else if(gameData=="LLL" || gameData=="LLR"){
-    		
-    		if(fieldPosition == 1) {
-    			/*
-    			if(counter==1) {
-    				Robot.Drivesystem.MoveForwardFeet(24.5);
-    			}
-    			else if(counter==2) {
-    				Robot.Drivesystem.RotateRobot(90);//Positive Values are clockwise
-    			}
-    			else if(counter==3 || counter==4) {
-    				Robot.Drivesystem.fowardTillSwitch();
-    				Robot.Liftsystem.SetLiftHeight(6);
-    			}
-    			else if(counter==5) {
-    				Robot.Grabber.Releasing();
-    			}
-    			else if(counter==6) {
-    				Robot.Drivesystem.MoveForwardFeet(-.5);
-    			}
-    			else if(counter==7 || counter==8) {
-    				Robot.Liftsystem.LiftBottom();
-    				Robot.Drivesystem.RotateRobot(90);
-    			}
-    			else if(counter==9) {
-    				Robot.Drivesystem.MoveForwardFeet(17);
-    			}
-    			else if(counter==10) {
-    				
-    			}
-    			else if(counter==11) {
-    				
-    				
-    			}
-    			else if(counter==12) {
-	
-    				}
-    					
-    			}
-    			
-    		
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-		
-    	}
-
-    	
-    	else if(gameData=="LRR" || gameData=="LRL"){
-    		if(fieldPosition == 1) {
-    			
-    		} 
-    		else if(fieldPosition == 2) {
-    			
-    		}
-    		else if(fieldPosition == 3) {
-    			
-    		}
-    	}
-
-    	
-    }*/
     	if(gameSetup2==true) { 
         	
         	if(fieldPosition == 1) {
-        		
+        		if(gameData=="RLL" || gameData=="RLR" ) {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(22);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(32.25);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(3);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.Releasing();
+            		}
+            		
+        			Robot.Liftsystem.LiftTop();
+        		}
+        		if(gameData=="LRR" || gameData=="LRL" || gameData=="LLL" || gameData=="LLR") {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(11.5);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(32.25);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(3);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.Releasing();
+            		}
+            		
+        			Robot.Liftsystem.LiftHeightNoCounter(500);
+        		}
+        		if(gameData=="RRR" || gameData=="RRL") {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(11);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		/*else if(counter==3) {
+            		Robot.Drivesystem.MoveForwardFeet(-8);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.RotateRobot(32.25);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.MoveFowardShort()
+            		}
+            		
+        			Robot.Liftsystem.LiftHeightNoCounter(500);*/
+        		}
         	}
         	else if(fieldPosition == 2) {
         		if(gameData=="LRR" || gameData=="LRL" || gameData=="LLL" || gameData=="LLR") {
-        			if(counter==0 || counter==1) {
+        			if(counter==0) {
                 		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
             			//Robot.Drivesystem.MoveForwardFeet(20);
-                		Robot.Drivesystem.MoveForwardFeet(25.33);
-                		Robot.Liftsystem.SetLiftHeight(1350);
+                		Robot.Drivesystem.gyroreset();
             		//	Robot.Drivesystem.RotateRobot(-32.25);
             			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardShort(1);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(-12.54);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(6.9);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Drivesystem.RotateRobot(12.54);
+            		}
+            		else if(counter==8) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==9) {
+            			Robot.Drivesystem.MoveForwardFeet(4.3);
+            		}
+            		else if(counter==10) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==11) {
+            			Robot.Grabber.Releasing();
+            		}
+            		else if(counter==12) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		
+        			Robot.Liftsystem.LiftHeightNoCounter(500);
+        		}
+        		else if(gameData=="RLL" || gameData=="RLR" || gameData=="RRR" || gameData=="RRL") {
+        			if(counter==0) {
+                		
+                		Robot.Drivesystem.gyroreset();
+            		
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardShort(1);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(24.8);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(8);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Drivesystem.RotateRobot(-24.8);
+            		}
+            		else if(counter==8) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==9) {
+            			Robot.Drivesystem.MoveForwardShort(1);
+            		}
+            		else if(counter==10) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==11) {
+            			Robot.Grabber.Releasing();
+            		}
+            		else if(counter==12) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		
+        			Robot.Liftsystem.LiftHeightNoCounter(500);
+        		}
+        	}
+        	
+        	else if(fieldPosition == 3) {
+        		if(gameData=="RLL" || gameData=="RLR" || gameData=="RRL" || gameData=="RRR" ) {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(11.5);
+        			}
             		else if(counter==2) {
             			Robot.Drivesystem.reset();
             		}
@@ -367,69 +284,79 @@ public class Autonomous extends Command {
             			Robot.Drivesystem.gyroreset();
             		}
             		else if(counter==5) {
-            			Robot.Drivesystem.MoveForwardFeet(.371);//MakeSmalldistancecode
+            			Robot.Drivesystem.MoveForwardFeet(3);//MakeSmalldistancecode
             		}
             		else if(counter==6) {
             			Robot.Drivesystem.reset();
             		}
             		else if(counter==7) {
-            			Robot.Grabber.AutoReleasing();
+            			Robot.Grabber.Releasing();
             		}
-            		else if(counter==8) {
-            			Robot.Drivesystem.reset();
-            		}
-            		else if(counter==9) {
-            			Robot.Drivesystem.MoveForwardFeet(-1);
-            		}
-            		else if(counter==10) {
-            			Robot.Drivesystem.reset();
-            		}
-            		else if(counter==11) {
-            			Robot.Drivesystem.RotateRobot(-32.25);
-            		}
-            		else if(counter==12) {
-            			Robot.Drivesystem.gyroreset();
-            		}
-            		else if(counter==13 || counter==14) {
-            			Robot.Drivesystem.MoveForwardFeet(5.271);
-            			Robot.Liftsystem.LiftBottom();
-            		}
-            		else if(counter==15) {
-            			Robot.Drivesystem.reset();
-            		}
-            		else if(counter==16) {
-            			Robot.Drivesystem.RotateRobot(90);
-            		}
-            		else if(counter==17) {
-            			Robot.Drivesystem.gyroreset();
-            		}
-            		else if(counter==18) {
-            			Robot.Drivesystem.MoveForwardFeet(4.285);
-            		}
-            		else if(counter==19) {
-            			Robot.Drivesystem.reset();
-            		}
-            		else if(counter==19) {
-            			Robot.Drivesystem.RotateRobot(-90);
-            		}
-            		else if(counter==19) {
-            			Robot.Drivesystem.gyroreset();
-            		}
-            		else if(counter==20) {
-            			Robot.Drivesystem.MoveForwardFeet(3.23);
-            			Robot.Grabber.AutonomousGrabbing();
-            		}
-            		else if(counter==21) {
-            			Robot.Drivesystem.reset();
-            		}
+            		
+        			Robot.Liftsystem.SetLiftHeight(500);
         		}
-        		else if(gameData=="RLL" || gameData=="RLR" || gameData=="RRR" || gameData=="RRL") {
-        			
+        		if(gameData=="LRR" || gameData=="LRL") {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(22);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(-32.25);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(3);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.Releasing();
+            		}
+            		
+        			Robot.Liftsystem.LiftTop();
         		}
-        	}
-        	
-        	else if(fieldPosition == 3) {
-        		
+        		if(gameData=="LLL" || gameData=="LLR") {
+        			if(counter==0) {
+                		//Robot.Drivesystem.RotateRobot(129);//129=Rotation
+            			//Robot.Drivesystem.MoveForwardFeet(20);
+                		Robot.Drivesystem.gyroreset();
+            		//	Robot.Drivesystem.RotateRobot(-32.25);
+            			}
+        			else if(counter==1) {
+        				Robot.Drivesystem.MoveForwardFeet(11.5);
+        			}
+            		else if(counter==2) {
+            			Robot.Drivesystem.reset();
+            		}
+            		/*else if(counter==3) {
+            		Robot.Drivesystem.RotateRobot(32.25);
+            		}
+            		else if(counter==4) {
+            			Robot.Drivesystem.gyroreset();
+            		}
+            		else if(counter==5) {
+            			Robot.Drivesystem.MoveForwardFeet(3);//MakeSmalldistancecode
+            		}
+            		else if(counter==6) {
+            			Robot.Drivesystem.reset();
+            		}
+            		else if(counter==7) {
+            			Robot.Grabber.Releasing();
+            		}
+            		
+        			Robot.Liftsystem.LiftHeightNoCounter(500);*/
+        		}
         	}
 
         	

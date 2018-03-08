@@ -81,7 +81,7 @@ public void SetLiftHeight(double height) {
 		lifterMotor1.set(heightMath*.18);
 		lifterMotor2.set(heightMath*.18);
 		
-		ClimbingMotor.set(heightMath*.9);
+		ClimbingMotor.set(heightMath);
 	}
 	else if(heightMath>0) {
 		lifterMotor1.set(heightMath*.3);
@@ -90,18 +90,56 @@ public void SetLiftHeight(double height) {
 		ClimbingMotor.set(heightMath*.9);
 	}
 	
-	
-
-	
-	
-	
-	
 	if(heightdelta<=5 && heightdelta>=-5) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
 		
 		ClimbingMotor.set(0);
 		counter += 1;
+		Brake();
+	}
+	else {
+		Coast();
+	}
+	
+	//SmartDashboard.putNumber("LiftValue",(double) stick.getRawAxis(5) );
+	SmartDashboard.putNumber("LiftEncoder",(int) liftheight);
+	
+
+}
+
+public void LiftHeightNoCounter(double height) {
+	double liftheight = liftEncoder.get();
+	
+
+	heightdelta = height-liftheight;
+	heightMath=heightdelta/50;
+	if(heightMath>1) {
+		heightMath=1.;
+	}
+	if(heightMath<-1) {
+		heightMath=-1.;
+	}
+	
+	if(heightMath<0) {
+		lifterMotor1.set(heightMath*.18);
+		lifterMotor2.set(heightMath*.18);
+		
+		ClimbingMotor.set(heightMath);
+	}
+	else if(heightMath>0) {
+		lifterMotor1.set(heightMath*.3);
+		lifterMotor2.set(heightMath*.3);
+		
+		ClimbingMotor.set(heightMath*.9);
+	}
+	
+	if(heightdelta<=5 && heightdelta>=-5) {
+		lifterMotor1.set(0);
+		lifterMotor2.set(0);
+		
+		ClimbingMotor.set(0);
+		
 		Brake();
 	}
 	else {
@@ -165,34 +203,15 @@ public void JoystickLiftControl(Joystick stick) {
 	double liftheight = liftEncoder.get();
 	
 	if(stick.getRawAxis(5)<-.3) {
-		//lifterMotor1.set(-stick.getRawAxis(5)*.4);
-		//lifterMotor2.set(-stick.getRawAxis(5)*.4);
+	
 		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.29)));
 		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.29)));
-		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
 		ClimbingMotor.set(-stick.getRawAxis(5));
-		/*lifterMotor1.set(-stick.getRawAxis(5)*.35);
-		lifterMotor2.set(-stick.getRawAxis(5)*.35);
-		
-		
-		ClimbingMotor.set(-stick.getRawAxis(5)*.73);/*
-		
-		
-		/*if(stick.getRawAxis(5)<0) {
-			TiltMotor.set(stick.getRawAxis(5));
-		}
-		else {
-			TiltMotor.set(stick.getRawAxis(5)*.9);
-		}*/
-		
-		
-		//TiltMotor.set();
 		logicBoolean=false;
 	}
 	else if(stick.getRawAxis(5)>.3) {
 		lifterMotor1.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
 		lifterMotor2.set(-stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)*.18)));
-		//TiltMotor.set(stick.getRawAxis(5)*Math.sin((Math.abs(stick.getRawAxis(5)*1.57)))*.9);
 		ClimbingMotor.set(-stick.getRawAxis(5));
 		
 		
@@ -253,18 +272,20 @@ public void JoystickLiftControl(Joystick stick) {
 		ClimbingMotor.set(0);
 		ClimbingMotor.setNeutralMode(NeutralMode.Brake);
 	}
+	else {
+		ClimbingMotor.setNeutralMode(NeutralMode.Coast);
+	}
+	
 	
 	if(liftSwitchBottom.get()==false && -stick.getRawAxis(5)<0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		
 		ClimbingMotor.set(0);
 		Brake();
 	}
 	else if(liftSwitchTop.get()==false && -stick.getRawAxis(5)>0) {
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		
 		ClimbingMotor.set(0);
 		Brake();
 	}
@@ -278,8 +299,6 @@ public void JoystickLiftControl(Joystick stick) {
 		SmartDashboard.putBoolean("Brake", true);
 		lifterMotor1.set(0);
 		lifterMotor2.set(0);
-		//TiltMotor.set(0);
-		//ClimbingMotor.set(0);
 		Brake();
 	}
 	

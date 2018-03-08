@@ -29,8 +29,6 @@ public class Grabber extends Subsystem {
 	
 	public static DigitalInput SwitchGrabber = RobotMap.SwitchGrabber;
 	
-	
-	public static double PotentiometerVoltage;
 	public static int autoTimer;
 	public static int counter;
     // Put methods for controlling this subsystem
@@ -61,7 +59,7 @@ public void Releasing(){
 }
 
 public void AutoReleasing(){
-	if(autoTimer<30) {
+	if(autoTimer<100) {
 		Grabber1.set(1);
 		Grabber2.set(-1);	
 		autoTimer+=1;
@@ -75,32 +73,6 @@ public void AutoReleasing(){
 }
 
 
-public void ActuatorOut() {
-	// Actuator will Extend
-//	Actuator.set(.3);
-	
-	
-}
-
-public void AutonomousGrabbing() {
-	Grabber1.set(-.6);
-	Grabber2.set(-.6);
-}
-
-public void Grabbersoff() {
-	Grabber1.set(0);
-	Grabber2.set(0);
-}
-
-/*public void ActuatorIn() {
-	// Actuator will retract
-	Actuator.set(-.3);
-	 if(HallEffect1.get()==false) {
-		 Actuator.set(0);
-	 }
-	
-	
-}*/
 
 public void JoystickGrabberControl(Joystick stick) {
 	if(stick.getRawButton(6)==true) {

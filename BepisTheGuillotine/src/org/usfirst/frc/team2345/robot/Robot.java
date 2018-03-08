@@ -38,7 +38,8 @@ public class Robot extends IterativeRobot {
 
 	//public static String gameData;
 	Command autonomousCommand;
-	
+	//Command LiftBottom;
+	//Command LiftTop;
 
 	/**
 	 * This function is run when the robot is first started up and should be
